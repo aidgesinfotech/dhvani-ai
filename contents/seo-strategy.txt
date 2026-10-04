@@ -1,0 +1,37 @@
+SEO strategy I strongly recommend
+Don't try to make one About Us page rank for every keyword. Instead, make the About page establish the company/entity, and create individual high-quality service pages around the commercial searches.
+For example:
+Page
+Primary SEO topic
+/
+AI Data Solutions Company
+/ai-data-collection
+AI Data Collection Services
+/data-annotation
+AI Data Annotation Services
+/speech-data-collection
+Speech Data Collection
+/image-data-collection
+Image Data Collection
+/video-data-collection
+Video Data Collection
+/egocentric-video-data
+Egocentric Video Data Collection
+/multimodal-data
+Multimodal AI Data
+/ocr-data-collection
+OCR Data Collection
+/llm-evaluation
+LLM Evaluation Services
+/ai-model-evaluation
+AI Model Evaluation
+/agentic-ai
+Agentic AI Solutions
+/ai-chatbot
+AI Chatbot Development
+/about
+Dhvani.ai / AI Data Company
+
+This is much stronger than stuffing every keyword into one page. Google specifically recommends clear, descriptive titles/headings, useful original content, crawlable internal links, and people-first content.
+
+

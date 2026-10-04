@@ -1,0 +1,210 @@
+
+
+1. Speech Dataset Collection
+Dhvani.ai delivers end-to-end Speech Dataset Collection services designed for training and evaluating modern Speech AI, ASR, TTS, and Conversational AI systems.
+We enable large-scale, high-quality voice data collection through multiple secure recording channels, ensuring flexibility, scalability, and global reach.
+Data Collection Channels
+📱 Mobile App-Based Collection
+Secure voice data collection via Android & iOS applications, enabling scalable crowd-based and controlled speech recording across diverse demographics and accents.
+🌐 Web App Recording
+Browser-based speech collection for fast onboarding, remote participation, and enterprise-controlled recording workflows without device limitations.
+🎧 Acoustic Studio Recording
+Professional, studio-grade speech recording in controlled acoustic environments, ideal for TTS, AI dubbing, voice cloning, audiobooks, and high-fidelity speech datasets.
+Key Capabilities
+Multilingual speech collection across 100+ languages
+Native speakers with demographic balancing
+Scripted, semi-scripted, and spontaneous speech
+Quality-controlled recording standards
+Secure data handling and compliance-ready workflows
+Dhvani.ai ensures accurate, diverse, and production-ready speech datasets—at global scale.
+2. Transcription, Segmentation, Proofreading, Translation & QA
+Dhvani.ai provides end-to-end language data services with a strong focus on accuracy, consistency, and global linguistic coverage. All transcription work is 100% human-made, ensuring natural language understanding, cultural accuracy, and enterprise-grade quality.
+We support 100+ GlobalX languages, delivering scalable transcription and language services for AI training, compliance, and content localization.
+Our Capabilities
+🎧 Human-Made Transcription
+High-accuracy verbatim and clean-read transcription for speech, audio, and video data.
+✂️ Segmentation & Structuring
+Sentence-level and time-stamped segmentation optimized for ASR, NLP, and LLM training pipelines.
+📝 Proofreading & Editing
+Linguistic review to ensure grammatical accuracy, consistency, and adherence to client style guides.
+🌍 Translation & Localization
+Multilingual translation with native-language experts, maintaining semantic meaning and cultural relevance.
+✅ Quality Assurance (QA)
+Verified multilingual QA with multi-stage review processes to meet enterprise and research-grade standards.
+Delivery & Integration
+Client tools or secure platforms supported
+Output formats: JSON, SRT, TXT, CSV, XML
+Scalable global data collection and processing workflows
+Dhvani.ai delivers reliable, multilingual language data—built for accuracy, scale, and AI readiness.
+3. Annotation Services (LLM, NLP, Vision & Speech AI)
+Dhvani.ai provides enterprise-grade annotation services across Image, Video, Audio, and Text, purpose-built for training and evaluating Computer Vision, Speech AI, NLP, and Large Language Models (LLMs).
+Our annotation pipelines combine expert human annotators, automation, and multi-stage QA to deliver high-accuracy, scalable, and compliant datasets.
+Annotation Capabilities
+🖼️ Image & Video Annotation
+2D & 3D Bounding Boxes
+Polygon Annotation
+Semantic & Instance Segmentation
+Object Detection, Tracking & Scene Classification
+LiDAR & Point Cloud Annotation for autonomous and spatial AI systems
+🎧 Audio Annotation
+Speaker Labeling & Diarization
+Speech segmentation & time alignment
+Emotion, intent, and acoustic labeling
+ASR-ready and conversational AI datasets
+📝 Text & NLP Annotation
+Named Entity Recognition (NER)
+Intent & sentiment labeling
+Text classification & span tagging
+Instruction tuning and prompt datasets for LLMs
+
+Built for LLM & NLP Training
+Human-labeled, high-quality text annotations
+Structured datasets for LLM fine-tuning, evaluation, and alignment
+Multilingual coverage across 100+ languages
+Consistent tagging schemas and annotation guidelines
+Quality & Integration
+Human-in-the-loop validation with multilayer QA
+Client tools and custom workflows supported
+Delivery formats: CLIENT TOOL,JSON, CSV, XML, SRT,
+Secure, scalable, and compliance-ready pipelines
+Dhvani.ai transforms raw data into AI-ready intelligence—accurate, scalable, and production-grade.
+4. Image & Video Dataset Collection
+Dhvani.ai delivers high-quality image and video datasets designed to train and validate Computer Vision and Generative AI models at global scale.
+We provide flexible and secure data collection through on-site deployments and crowd-sourced programs, ensuring diversity, realism, and compliance across regions and demographics.
+High-quality visual data for Computer Vision and AI model development.
+We support:
+Image collection
+Image classification
+Object detection
+Image segmentation
+Human-centric datasets
+Product images
+Retail images
+OCR images
+Custom image datasets
+
+
+OCR & Document AI Data
+Turn complex documents into AI-ready training data.
+We support:
+Handwritten text
+Printed text
+Forms
+Receipts
+Invoices
+Identity documents
+Business documents
+Multilingual documents
+Document classification
+OCR annotation
+Applications:
+ OCR • Document AI • Intelligent Document Processing • Handwriting Recognition
+
+
+
+Egocentric Video Data Collection 
+Real-world video datasets designed for Computer Vision, Video Understanding, Robotics, and AI systems. 
+
+First-person (egocentric) video datasets for training, fine-tuning, and evaluating next-generation AI systems.
+Capture real-world human activities, interactions, object manipulation, and task workflows from a first-person perspective using structured, scalable data collection programs.
+
+Commercial Video Data Collection
+Commercial video datasets designed to support AI, computer vision, and real-world business applications.
+Collect customized video data across retail, workplaces, public environments, products, services, and commercial activities to help organizations develop, train, and evaluate advanced AI models.
+Service
+Website Description
+Egocentric Video Data Collection
+First-person video datasets capturing real-world human activities, interactions, and workflows for AI and computer vision.
+Commercial Video Data Collection
+Customized video datasets from real-world commercial environments, products, services, and business activities for AI and computer vision.
+
+
+
+Data Collection Models
+📍 On-Site Data Collection Services
+Controlled, location-based image and video capture using standardized protocols—ideal for regulated, sensitive, or high-precision use cases.
+🌍 Crowd-Sourced Data Collection
+Scalable global contributor networks enabling rapid collection of diverse real-world images and videos across environments, devices, and demographics.
+Key Capabilities
+Diverse environmental and demographic coverage
+High-resolution image & video capture
+Metadata tagging and demographic balancing
+Privacy-aware and consent-driven workflows
+Global compliance and quality assurance
+Use Cases
+Facial Recognition AI Training
+Object detection and tracking
+Scene understanding and activity recognition
+Retail, automotive, healthcare, and smart city AI
+Dhvani.ai ensures globally diverse, ethically sourced, and AI-ready image and video datasets—built for real-world performance.
+5. AI Data Validation & Evaluation Services
+Dhvani.ai delivers enterprise-grade AI data validation and model evaluation services to ensure training data and AI outputs meet the highest standards of accuracy, reliability, and real-world performance.
+We specialize in multimodal and multilingual human-in-the-loop validation, helping organizations reduce bias, improve model precision, and confidently deploy AI systems at scale.
+Our Validation & Evaluation Capabilities
+📊 Training Data Validation
+Quality checks for labeled and unlabeled datasets to ensure consistency, completeness, and compliance before model training.
+🧠 AI Model Evaluation
+Human evaluation of AI model outputs to assess correctness, relevance, and contextual understanding.
+🌍 Multimodal & Multilingual Validation
+Human verification across text, speech, image, and video, supporting global languages and regional nuances.
+👥 Human-in-the-Loop QA
+Expert reviewers validating AI outputs for accuracy, bias detection, and performance improvement.
+Key Use Cases
+ASR & TTS model accuracy validation
+LLM output evaluation and alignment
+Computer Vision model performance testing
+Conversational AI and chatbot QA
+Generative AI output assessment
+Quality & Compliance
+Multi-layer QA frameworks and reviewer calibration
+Custom evaluation metrics and scoring rubrics
+Secure workflows aligned with GDPR, HIPAA, and ISO 9001:2015
+Scalable evaluation pipelines from pilot to enterprise
+Dhvani.ai ensures your AI systems are validated by humans—so they perform with confidence in the real world.
+
+6. AGENTIC AI - From AI Data to Intelligent Action
+Dhvani.ai is expanding from AI data into Agentic AI and intelligent automation.
+We develop:
+AI Agents
+AI systems designed to perform defined business tasks.
+AI Chatbots
+Intelligent customer and employee experiences.
+WhatsApp AI
+AI-powered customer communication and automation.
+Business Automation
+Connect AI with repetitive business processes.
+Custom AI Solutions
+Purpose-built AI applications for specific business requirements.
+
+
+
+
+7. Studio Recording (TTS – Text-to-Speech Data)
+Dhvani.ai provides professional studio recording services delivering high-fidelity Text-to-Speech (TTS) and speech datasets for advanced AI and ML speech applications.
+With access to acoustically controlled studios, professional equipment, and native voice talent worldwide, we create production-ready audio that meets enterprise and research-grade standards.
+Voice & Speech Solutions
+🎙️ TTS & Speech Dataset Recording
+Studio-grade recordings for neural TTS, ASR training, and speech synthesis models.
+🎬 AI Dubbing & Prompt Recording
+Multilingual dubbing, scripted prompts, and conversational recordings for voice assistants and generative speech models.
+🧠 Professional AI Speech Data
+Clean, consistent audio optimized for AI training, fine-tuning, and evaluation.
+Production Use Cases
+Virtual Assistants & Conversational AI
+E-Learning & E-Education Platforms
+Audiobooks & Podcasts
+IVR, Navigation & Smart Devices
+Speech Model Evaluation & Benchmarking
+Quality & Standards
+Native speakers across 100+ languages
+Controlled acoustic environments
+Consistent loudness and audio formats
+Human QA and post-production review
+Secure, compliant data workflows
+Dhvani.ai delivers studio-quality speech data—clear, natural, and built for next-generation AI voice systems.
+
+
+
+Two - Segment we have to add 
+1. Ai Business Advertising 
+2. ⁠Ai Film Making
