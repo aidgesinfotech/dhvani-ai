@@ -18,6 +18,8 @@
   --color-royal: #3718c8;
   --color-royal-light: #8b74ff;
   --color-royal-deep: #1f0d7a;
+  --color-paper: #0a0a0d;
+  --color-snow: #ffffff;
 
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
@@ -366,12 +368,51 @@ textarea {
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
+.marquee-cards {
+  mask-image: linear-gradient(90deg, transparent, #000 1.5%, #000 98.5%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 1.5%, #000 98.5%, transparent);
+}
 @keyframes marquee {
   from {
     transform: translateX(0);
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+.vmarquee {
+  overflow: hidden;
+  flex: none;
+  height: 25.6rem;
+  mask-image: linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
+}
+@media (min-width: 640px) {
+  .vmarquee {
+    height: 26.8rem;
+  }
+}
+@media (min-width: 1024px) {
+  .vmarquee {
+    height: 35.6rem;
+  }
+}
+.vmarquee-track {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  animation: vmarquee 16s linear infinite;
+}
+.vmarquee-reverse .vmarquee-track {
+  animation-direction: reverse;
+}
+@keyframes vmarquee {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
   }
 }
 
@@ -415,6 +456,76 @@ textarea {
 .wave-bar {
   transform-origin: center;
   animation: wave 1.4s ease-in-out infinite;
+}
+
+@keyframes site-map-blink {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.map-blink {
+  animation: 3.6s ease-in-out infinite site-map-blink;
+}
+@keyframes site-map-pulse {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+.map-pulse {
+  animation: 2.8s ease-out infinite site-map-pulse;
+}
+
+.hero-world-map {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hm-dot { fill: rgba(255, 255, 255, 0.16); }
+.hm-gold { fill: #d1a908; }
+.hm-gold-10 { fill: rgba(209, 169, 8, 0.14); }
+.hm-gold-30 { fill: rgba(209, 169, 8, 0.4); }
+.hm-royal { fill: #8b74ff; }
+.hm-royal-10 { fill: rgba(139, 116, 255, 0.16); }
+.hm-royal-30 { fill: rgba(139, 116, 255, 0.42); }
+.hm-stroke-gold { stroke: #d1a908; fill: none; }
+.hm-stroke-gold-50 { stroke: rgba(209, 169, 8, 0.5); fill: none; }
+.hm-stroke-royal { stroke: rgba(139, 116, 255, 0.3); fill: none; }
+.hm-ink { fill: #0a0800; }
+.hm-clear { fill: transparent; }
+
+@keyframes type-on {
+  from { max-width: 0; }
+  to { max-width: 14rem; }
+}
+.type-on {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  animation: type-on 0.55s steps(16, end) both;
+}
+.edge-scroll {
+  scrollbar-width: none;
+}
+.edge-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dotted world map on the homepage uses these fills. */
+.fill-fg\/15 {
+  fill: rgb(255 255 255 / 0.15);
+}
+.stroke-royal-light\/25 {
+  stroke: rgb(139 116 255 / 0.25);
 }
 
 @keyframes spin-slow {
@@ -561,9 +672,13 @@ select.field option {
 
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
+  .vmarquee-track,
   .animate-float,
   .pulse-ring,
   .wave-bar,
+  .map-blink,
+  .map-pulse,
+  .type-on,
   .animate-spin-slow {
     animation: none;
   }
