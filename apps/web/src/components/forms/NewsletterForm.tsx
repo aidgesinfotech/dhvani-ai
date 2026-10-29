@@ -21,9 +21,9 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
   };
 
   return (
-    <form onSubmit={submit} className="relative space-y-3">
+    <form onSubmit={submit} className="relative">
       <Honeypot value={website} onChange={setWebsite} />
-      <div className={`flex gap-2 ${compact ? 'flex-col sm:flex-row' : 'flex-col sm:flex-row'}`}>
+      <div className={`flex gap-2 ${compact ? 'flex-col min-[480px]:flex-row min-[480px]:items-center' : 'flex-col sm:flex-row sm:items-center'}`}>
         <label className="sr-only" htmlFor={compact ? 'nl-email-c' : 'nl-email'}>
           Email address
         </label>
@@ -34,14 +34,16 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Your work email"
-          className="field flex-1 min-w-0 !rounded-full"
+          className={`field min-w-0 flex-1 !rounded-full ${compact ? 'h-12 !py-0' : ''}`}
         />
-        <button type="submit" disabled={status.kind === 'sending'} className="btn btn-primary shrink-0 disabled:opacity-60">
+        <button type="submit" disabled={status.kind === 'sending'} className={`btn btn-primary shrink-0 disabled:opacity-60 ${compact ? 'h-12 !px-6' : ''}`}>
           {status.kind === 'sending' ? 'Subscribing…' : 'Subscribe'}
           <ArrowRight size={16} />
         </button>
       </div>
-      <FormStatus status={status} />
+      <div className="mt-3 empty:mt-0">
+        <FormStatus status={status} />
+      </div>
     </form>
   );
 }

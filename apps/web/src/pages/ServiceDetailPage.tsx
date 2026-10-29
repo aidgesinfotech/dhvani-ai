@@ -16,6 +16,9 @@ import { ProcessTimeline } from '../components/sections/ProcessTimeline';
 import { FaqSection } from '../components/sections/FaqSection';
 import { CtaBand } from '../components/sections/CtaBand';
 import { NotFoundPage } from './NotFoundPage';
+import { EgocentricSamples } from '../components/sections/EgocentricSamples';
+import { EgocentricBody } from '../components/sections/EgocentricBody';
+import { EGOCENTRIC_FAQS, EgocentricHero } from '../components/sections/EgocentricHero';
 
 export function ServiceDetailPage() {
   const { slug = '' } = useParams();
@@ -37,12 +40,17 @@ export function ServiceDetailPage() {
   if (!svc) return <PageLoader />;
 
   const b = svc.body || {};
+  const ego = svc.slug === 'egocentric-video-data-collection';
   const related = services.filter((x) => x.slug !== svc.slug && x.category === svc.category).slice(0, 3);
   const more = related.length >= 2 ? related : services.filter((x) => x.slug !== svc.slug).slice(0, 3);
+  const faqs = ego ? EGOCENTRIC_FAQS : b.faqs || [];
 
   return (
     <>
       <Seo title={svc.seo_title || `${svc.title} | Dhvani.ai`} description={svc.seo_description || svc.excerpt} image={svc.image_url} />
+      {ego ? (
+        <EgocentricHero title={svc.title} subtitle={b.tagline || svc.excerpt} tags={svc.tags || []} />
+      ) : (
       <PageHero
         eyebrow={svc.category}
         title={svc.title}
@@ -62,7 +70,14 @@ export function ServiceDetailPage() {
           </div>
         )}
       </PageHero>
+      )}
 
+      {ego && <EgocentricSamples />}
+
+      {ego ? (
+        <EgocentricBody body={b} />
+      ) : (
+      <>
       <section className="section !pt-6">
         <div className="container-x grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
           <div>
@@ -200,6 +215,8 @@ export function ServiceDetailPage() {
           </div>
         </section>
       )}
+      </>
+      )}
 
       {steps.length > 0 && (
         <section className="section">
@@ -213,8 +230,15 @@ export function ServiceDetailPage() {
       )}
 
       <FaqSection
-        faqs={b.faqs || []}
-        intro={{ eyebrow: 'Service FAQ', title: `${svc.title} — FAQs`, body: 'Quick answers to common questions about this service.' }}
+        faqs={faqs}
+        columns={ego ? 2 : 1}
+        intro={{
+          eyebrow: 'Service FAQ',
+          title: ego ? 'Questions teams ask before capture' : `${svc.title} — FAQs`,
+          body: ego
+            ? 'Rigs, audio, consent, labels, pilots and delivery — the details that decide if a first-person dataset will train.'
+            : 'Quick answers to common questions about this service.',
+        }}
       />
 
       {more.length > 0 && (

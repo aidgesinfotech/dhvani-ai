@@ -36,13 +36,15 @@ export function Footer() {
       <div className="absolute -top-40 left-1/4 h-80 w-80 glow-blue opacity-50" aria-hidden />
 
       <div className="container-x relative pt-16 md:pt-20">
-        <div className="grid gap-6 rounded-[1.5rem] border border-line bg-black/40 p-6 md:p-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div>
+        <div className="flex flex-col gap-5 rounded-[1.75rem] border border-line bg-black/40 px-5 py-6 sm:px-8 sm:py-7 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="min-w-0 md:max-w-md">
             <span className="eyebrow">Newsletter</span>
-            <p className="mt-3 font-display text-2xl md:text-3xl font-semibold text-white">Stay ahead in AI data.</p>
-            <p className="mt-2 text-sm text-fg-2">Insights on datasets, LLM evaluation and Agentic AI — no spam.</p>
+            <p className="mt-3 font-display text-2xl font-semibold text-white md:text-3xl">Stay ahead in AI data.</p>
+            <p className="mt-2 max-w-sm text-sm text-fg-2">Insights on datasets, LLM evaluation and Agentic AI — no spam.</p>
           </div>
-          <NewsletterForm compact />
+          <div className="w-full md:max-w-xl md:flex-1">
+            <NewsletterForm compact />
+          </div>
         </div>
 
         <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.3fr_1.3fr]">
@@ -50,7 +52,10 @@ export function Footer() {
             <Link to="/" aria-label="Home" className="inline-block">
               <Logo className="h-14 md:h-16" />
             </Link>
-            <p className="mt-5 text-sm text-fg-2 leading-relaxed max-w-sm">{settings.footer_blurb}</p>
+            {settings.tagline && (
+              <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold">{settings.tagline}</p>
+            )}
+            <p className={`text-sm text-fg-2 leading-relaxed max-w-sm ${settings.tagline ? 'mt-3' : 'mt-5'}`}>{settings.footer_blurb}</p>
             {socials.length > 0 && (
               <div className="mt-6 flex gap-2">
                 {socials.map(({ key, icon: Ico, label }) => (
@@ -110,7 +115,7 @@ export function Footer() {
                 <li>
                   <a href={waHref(settings.whatsapp)} target="_blank" rel="noreferrer" className="flex gap-3 hover:text-white transition-colors">
                     <MessageCircle size={16} className="mt-0.5 text-royal-light shrink-0" />
-                    WhatsApp us
+                    WhatsApp · {settings.whatsapp?.replace(/^\+91(\d{5})(\d{5})$/, '+91 $1 $2')}
                   </a>
                 </li>
               )}

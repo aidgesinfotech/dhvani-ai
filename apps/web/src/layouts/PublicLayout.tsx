@@ -3,6 +3,7 @@ import { Footer } from '../components/Footer';
 import { CustomCursor } from '../components/CustomCursor';
 import { SmoothScroll } from '../components/SmoothScroll';
 import { MobileBottomNav } from '../components/MobileBottomNav';
+import { EvaChat } from '../components/EvaChat';
 import { PageTransition } from '../components/PageTransition';
 
 export function PublicLayout() {
@@ -15,6 +16,7 @@ export function PublicLayout() {
         <PageTransition />
       </main>
       <Footer />
+      <EvaChat />
       <MobileBottomNav />
     </div>
   );

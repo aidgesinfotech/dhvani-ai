@@ -6,15 +6,15 @@
 export const SETTINGS = {
   site_name: 'Dhvani.ai',
   logo_url: '',
-  tagline: 'We Build the Data That Builds AI',
+  tagline: 'AI is Future',
   phone: '+91 99041 99042',
-  whatsapp: '+919904199042',
+  whatsapp: '+917046070460',
   email: 'support@dhvani.ai.in',
   address: 'FF4-410, LE City Centre, Opp. District Court, Collector Office OP Road, Diwalipura, Vadodara, Gujarat 390007, India',
   city: 'Vadodara, Gujarat, India',
   business_hours: 'Mon – Sat · 10:00 AM – 7:00 PM IST',
   footer_blurb:
-    'Dhvani.ai is a global AI data collection and AI solutions company. We deliver multilingual, multimodal datasets for NLP, LLM and computer vision — and build AI agents and intelligent automation on top of them.',
+    'Dhvani.Ai — Building Data for the Future of AI. Let’s build the future of AI together. Let’s innovate, collaborate, and grow together in the AI-powered world.',
   cta_label: "Let's Talk",
   linkedin: '',
   instagram: '',

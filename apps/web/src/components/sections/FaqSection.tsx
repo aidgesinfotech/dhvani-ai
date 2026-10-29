@@ -8,10 +8,10 @@ import { str, waHref, type Section } from '../../lib/content';
 import { SectionHeading } from '../ui/SectionHeading';
 import { Reveal } from '../Reveal';
 
-export function FaqAccordion({ faqs }: { faqs: QA[] }) {
+export function FaqAccordion({ faqs, columns = 1 }: { faqs: QA[]; columns?: 1 | 2 }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <div className="space-y-3">
+    <div className={columns === 2 ? 'grid items-start gap-3 md:grid-cols-2' : 'space-y-3'}>
       {faqs.map((f, i) => {
         const isOpen = open === i;
         return (
@@ -53,7 +53,7 @@ export function FaqAccordion({ faqs }: { faqs: QA[] }) {
   );
 }
 
-export function FaqSection({ faqs, intro }: { faqs: QA[]; intro?: Section }) {
+export function FaqSection({ faqs, intro, columns = 1 }: { faqs: QA[]; intro?: Section; columns?: 1 | 2 }) {
   const { settings } = useSite();
   if (!faqs.length) return null;
   return (
@@ -81,7 +81,7 @@ export function FaqSection({ faqs, intro }: { faqs: QA[]; intro?: Section }) {
           </Reveal>
         </div>
         <Reveal delay={0.05}>
-          <FaqAccordion faqs={faqs} />
+          <FaqAccordion faqs={faqs} columns={columns} />
         </Reveal>
       </div>
     </section>

@@ -556,16 +556,18 @@ export const SERVICES = [
       closing:
         'Dhvani.ai delivers egocentric video datasets that teach AI how the world looks — and works — through human eyes.',
       faqs: [
-        {
-          question: 'What is egocentric video data?',
-          answer:
-            'Egocentric video is recorded from a first-person point of view, usually with a head-mounted camera or smart glasses. It shows what a person sees while performing tasks — ideal for robotics, AR assistants and video understanding.',
-        },
-        {
-          question: 'Can you design custom task scripts?',
-          answer:
-            'Yes. We build structured task protocols around the actions, objects and environments your model needs, then scale them across contributors and regions.',
-        },
+        { question: 'What is egocentric video data?', answer: 'It is first-person footage, usually from a head-mounted camera or smart glasses. The clip shows what a person sees while they act — hands, objects and the task.' },
+        { question: 'Who is this dataset for?', answer: 'Robotics and embodied AI teams, video-understanding labs, AR and smart-glasses products, and action-recognition or world-model research.' },
+        { question: 'Can you design custom task scripts?', answer: 'Yes. We write step-by-step protocols around the actions, objects and rooms your model must learn, then run them across contributors.' },
+        { question: 'What cameras and rigs do you use?', answer: 'Head-mounted cameras, smart glasses and chest mounts, set to your resolution, frame rate and field of view.' },
+        { question: 'Can you record ultrawide footage?', answer: 'Yes. Ultrawide first-person passes keep hands, the workspace and the surrounding scene in one frame.' },
+        { question: 'Do you capture with audio and without audio?', answer: 'Both. Silent clips teach motion and objects. Audio clips keep speech, tool sounds and room noise when you need them.' },
+        { question: 'Which environments can you film in?', answer: 'Kitchens, homes, workshops, warehouses, stores, streets and other everyday places matched to your brief.' },
+        { question: 'How do you handle faces and consent?', answer: 'Every participant consents before recording. Faces are blurred when required, and files move over encrypted transfer.' },
+        { question: 'Can you label actions, hands and objects?', answer: 'Yes. Optional labels cover steps, actions, objects, hand interactions and scene metadata, shipped with the raw video.' },
+        { question: 'How do you check quality?', answer: 'Reviewers check resolution, frame rate, stability, task completion and whether the protocol was followed.' },
+        { question: 'Can we start with a pilot?', answer: 'Yes. Most programmes start with a short pilot so you can check framing and labels before the same setup is scaled.' },
+        { question: 'What file formats do you deliver?', answer: 'MP4 or MOV, JSON metadata, CSV manifests, or delivery into your own tool.' },
       ],
     },
   },

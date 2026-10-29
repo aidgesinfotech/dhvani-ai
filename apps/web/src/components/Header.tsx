@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Menu, Star, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSite } from '../context/SiteContext';
 import { Logo } from './ui/Logo';
@@ -9,6 +9,7 @@ import { Icon } from './ui/Icon';
 const links = [
   { to: '/', label: 'Home' },
   { to: '/about-us', label: 'About Us' },
+  { to: '/services/egocentric-video-data-collection', label: 'Egocentric', featured: true },
   { to: '/services', label: 'Services', mega: true },
   { to: '/blog', label: 'Blog' },
   { to: '/collaborate-with-us', label: 'Collaborate' },
@@ -94,11 +95,26 @@ export function Header() {
                     onMouseEnter={() => setMega(false)}
                     className={({ isActive }) =>
                       `px-3.5 py-2 text-sm font-medium rounded-full transition-colors ${
-                        isActive ? 'text-gold' : 'text-fg-2 hover:text-white'
+                        'featured' in l && l.featured
+                          ? 'text-gold'
+                          : isActive
+                            ? 'text-gold'
+                            : 'text-fg-2 hover:text-white'
                       }`
                     }
                   >
-                    {l.label}
+                    {'featured' in l && l.featured ? (
+                      <span className="relative inline-block text-gold drop-shadow-[0_0_10px_rgba(209,169,8,0.55)]">
+                        <Star
+                          size={9}
+                          className="absolute -top-2 left-0 fill-gold text-gold drop-shadow-[0_0_6px_rgba(209,169,8,0.9)]"
+                          aria-hidden
+                        />
+                        {l.label}
+                      </span>
+                    ) : (
+                      l.label
+                    )}
                   </NavLink>
                 )
               )}
@@ -232,11 +248,24 @@ export function Header() {
                       to={l.to}
                       end={l.to === '/'}
                       className={({ isActive }) =>
-                        `block py-4 font-display text-2xl font-semibold ${isActive ? 'text-gold' : 'text-white'}`
+                        `block py-4 font-display text-2xl font-semibold ${
+                          ('featured' in l && l.featured) || isActive ? 'text-gold' : 'text-white'
+                        }`
                       }
                       onClick={() => setOpen(false)}
                     >
-                      {l.label}
+                      {'featured' in l && l.featured ? (
+                        <span className="relative inline-block text-gold drop-shadow-[0_0_12px_rgba(209,169,8,0.5)]">
+                          <Star
+                            size={12}
+                            className="absolute -top-1 left-0 fill-gold text-gold drop-shadow-[0_0_6px_rgba(209,169,8,0.9)]"
+                            aria-hidden
+                          />
+                          {l.label}
+                        </span>
+                      ) : (
+                        l.label
+                      )}
                     </NavLink>
                   )}
                 </motion.div>
