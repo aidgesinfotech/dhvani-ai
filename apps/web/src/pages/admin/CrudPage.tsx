@@ -84,13 +84,13 @@ export function CrudPage({
       <Notice msg={msg} onClose={() => setMsg(null)} />
 
       {filter && (
-        <div className="mb-5 flex flex-wrap gap-1.5">
+        <div className="-mx-4 mb-5 flex gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
           {['All', ...filter.options].map((o) => (
             <button
               key={o}
               type="button"
               onClick={() => setActive(o)}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium ${active === o ? 'bg-gold text-black' : 'border border-white/10 text-white/60 hover:text-white'}`}
+              className={`shrink-0 rounded-full px-3.5 py-2 text-xs font-medium ${active === o ? 'bg-gold text-black' : 'border border-white/10 text-white/60 hover:text-white'}`}
             >
               {o} <span className="opacity-60">{o === 'All' ? rows.length : rows.filter((r) => r[filter.key] === o).length}</span>
             </button>
@@ -101,15 +101,15 @@ export function CrudPage({
       <div className="space-y-2">
         {visible.length === 0 && <p className="text-sm text-white/40">Nothing here yet.</p>}
         {visible.map((r) => (
-          <div key={r.id} className="card flex items-start gap-4 p-4">
+          <div key={r.id} className="card flex flex-col gap-3 p-4 sm:flex-row sm:items-start">
             <div className="min-w-0 flex-1">{renderRow(r)}</div>
-            <div className="flex shrink-0 items-center gap-1">
-              <button type="button" className="p-2 text-white/60 hover:text-gold" onClick={() => setEdit(r)} aria-label="Edit">
+            <div className="flex shrink-0 items-center justify-end gap-1 border-t border-white/8 pt-2 sm:border-0 sm:pt-0">
+              <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-white/70 hover:bg-white/5 hover:text-gold" onClick={() => setEdit(r)} aria-label="Edit">
                 <Pencil size={16} />
               </button>
               <button
                 type="button"
-                className="p-2 text-red-400/70 hover:text-red-300"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-red-300/80 hover:bg-red-500/10 hover:text-red-200"
                 onClick={async () => {
                   if (!confirm()) return;
                   await api.delete(`/api/admin/${endpoint}/${r.id}`);

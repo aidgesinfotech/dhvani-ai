@@ -6,7 +6,15 @@ import { AdminHeader, Badge } from './ui';
 
 type PageRow = { id: number; slug: string; title: string; seo_title?: string; published?: number; updated_at?: string };
 
-const LEGAL = new Set(['privacy-policy', 'terms-of-service']);
+const LEGAL = new Set([
+  'privacy-policy',
+  'terms-of-service',
+  'terms-and-conditions',
+  'data-license-agreement',
+  'supplier-code-of-conduct',
+  'ccpa-privacy-statement',
+  'candidate-privacy-statement',
+]);
 
 export function AdminPages() {
   const [pages, setPages] = useState<PageRow[]>([]);
@@ -17,11 +25,11 @@ export function AdminPages() {
 
   return (
     <div>
-      <AdminHeader title="Pages" subtitle="Edit hero text, SEO and every content section of each page. Image URLs left empty show branded placeholders." />
+      <AdminHeader title="Pages" subtitle="About, services, collaborate, blog and contact. The live homepage is edited from Homepage." />
       <div className="grid gap-3 sm:grid-cols-2">
         {pages.map((p) => {
           const path = p.slug === 'home' ? '/' : `/${p.slug}`;
-          const to = LEGAL.has(p.slug) ? `/admin/${p.slug}` : `/admin/pages/${p.id}`;
+          const to = p.slug === 'home' ? '/admin/homepage' : LEGAL.has(p.slug) ? `/admin/${p.slug}` : `/admin/pages/${p.id}`;
           return (
             <div key={p.id} className="card card-hover flex items-center gap-4 p-5">
               <span className="icon-tile !h-11 !w-11">

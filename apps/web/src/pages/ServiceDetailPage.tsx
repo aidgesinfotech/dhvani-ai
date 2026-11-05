@@ -22,7 +22,7 @@ import { EGOCENTRIC_FAQS, EgocentricHero } from '../components/sections/Egocentr
 
 export function ServiceDetailPage() {
   const { slug = '' } = useParams();
-  const { services, settings } = useSite();
+  const { services, settings, faqsFor } = useSite();
   const steps = useProcess('services');
   const [svc, setSvc] = useState<Service | null>(null);
   const [missing, setMissing] = useState(false);
@@ -43,7 +43,7 @@ export function ServiceDetailPage() {
   const ego = svc.slug === 'egocentric-video-data-collection';
   const related = services.filter((x) => x.slug !== svc.slug && x.category === svc.category).slice(0, 3);
   const more = related.length >= 2 ? related : services.filter((x) => x.slug !== svc.slug).slice(0, 3);
-  const faqs = ego ? EGOCENTRIC_FAQS : b.faqs || [];
+  const faqs = b.faqs?.length ? b.faqs : ego ? EGOCENTRIC_FAQS : faqsFor('Services');
 
   return (
     <>
@@ -231,13 +231,13 @@ export function ServiceDetailPage() {
 
       <FaqSection
         faqs={faqs}
-        columns={ego ? 2 : 1}
+        columns={faqs.length > 5 ? 2 : 1}
         intro={{
           eyebrow: 'Service FAQ',
-          title: ego ? 'Questions teams ask before capture' : `${svc.title} — FAQs`,
+          title: ego ? 'Questions teams ask before capture' : `Questions about ${svc.title}`,
           body: ego
             ? 'Rigs, audio, consent, labels, pilots and delivery — the details that decide if a first-person dataset will train.'
-            : 'Quick answers to common questions about this service.',
+            : 'Clear answers on scope, quality, formats, timelines and how we deliver this service.',
         }}
       />
 

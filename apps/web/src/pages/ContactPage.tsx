@@ -45,6 +45,20 @@ export function ContactPage() {
       <section className="section !pt-2">
         <div className="container-x">
           <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {(settings.whatsapp || '917046070460') && (
+              <RevealItem className="h-full">
+                <InfoCard icon={<MessageCircle size={20} />} label="India WhatsApp" href={waHref(settings.whatsapp || '917046070460')} blue>
+                  +91 70460 70460
+                </InfoCard>
+              </RevealItem>
+            )}
+            {(settings.whatsapp_uk || '447311304787') && (
+              <RevealItem className="h-full">
+                <InfoCard icon={<MessageCircle size={20} />} label="UK WhatsApp" href={waHref(settings.whatsapp_uk || '447311304787')} blue>
+                  +44 73113 04787
+                </InfoCard>
+              </RevealItem>
+            )}
             {settings.phone && (
               <RevealItem className="h-full">
                 <InfoCard icon={<Phone size={20} />} label="Call us" href={telHref(settings.phone)}>
@@ -52,17 +66,10 @@ export function ContactPage() {
                 </InfoCard>
               </RevealItem>
             )}
-            {settings.whatsapp && (
+            {(settings.email || 'support@dhvani.ai.in') && (
               <RevealItem className="h-full">
-                <InfoCard icon={<MessageCircle size={20} />} label="WhatsApp" href={waHref(settings.whatsapp)} blue>
-                  Chat with our team
-                </InfoCard>
-              </RevealItem>
-            )}
-            {settings.email && (
-              <RevealItem className="h-full">
-                <InfoCard icon={<Mail size={20} />} label="Email" href={`mailto:${settings.email}`}>
-                  {settings.email}
+                <InfoCard icon={<Mail size={20} />} label="Email" href={`mailto:${settings.email || 'support@dhvani.ai.in'}`}>
+                  {settings.email || 'support@dhvani.ai.in'}
                 </InfoCard>
               </RevealItem>
             )}

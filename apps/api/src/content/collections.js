@@ -103,7 +103,7 @@ export const FAQS = [
 
   ['Contact', 'How quickly will you respond?', 'Our team responds to project enquiries within one business day.'],
   ['Contact', 'What details should I include in my enquiry?', 'Your use case, data type, languages, approximate volumes, timeline and any quality or compliance requirements.'],
-  ['Contact', 'Can I call or WhatsApp you directly?', 'Yes — call or WhatsApp us on +91 99041 99042 during business hours.'],
+  ['Contact', 'Can I call or WhatsApp you directly?', 'Yes — WhatsApp us on +91 70460 70460 (India) or +44 73113 04787 (UK) during business hours, or email support@dhvani.ai.in.'],
   ['Contact', 'I want to join as a freelancer — should I use this form?', 'Please use the Collaborate With Us page so your profile reaches our partner team directly.'],
 ];
 
@@ -135,25 +135,77 @@ export const TERMS_BLOCKS = [
   { heading: 'Contact', body: `Questions about these Terms? Email ${EMAIL}.` },
 ];
 
+function stubLegal(slug, title, subtitle, focus) {
+  return {
+    slug,
+    title,
+    seo_title: `${title} | Dhvani.ai`,
+    seo_description: `${title} for Dhvani.ai — ${focus}`,
+    hero_eyebrow: 'Legal',
+    hero_title: title,
+    hero_subtitle: subtitle,
+    blocks: [
+      {
+        heading: 'Overview',
+        body: `This ${title} describes how Dhvani.ai handles ${focus}. The live wording can be refined in Admin → Legal. For questions, email ${EMAIL}.`,
+      },
+      {
+        heading: 'Contact',
+        body: `Email ${EMAIL}, WhatsApp +91 70460 70460 (India) or +44 73113 04787 (UK), or write to our head office in Vadodara, Gujarat, India.`,
+      },
+    ],
+  };
+}
+
 export const LEGAL_PAGES = [
   {
     slug: 'privacy-policy',
-    title: 'Privacy Policy',
-    seo_title: 'Privacy Policy | Dhvani.ai',
-    seo_description: 'How Dhvani.ai collects, uses and protects personal information, including consent for AI data contributors.',
+    title: 'Privacy and Cookie Policy',
+    seo_title: 'Privacy and Cookie Policy | Dhvani.ai',
+    seo_description: 'How Dhvani.ai collects, uses and protects personal information, cookies, and consent for AI data contributors.',
     hero_eyebrow: 'Legal',
-    hero_title: 'Privacy Policy',
-    hero_subtitle: 'How we collect, use and protect your information — including data shared by AI data contributors.',
+    hero_title: 'Privacy and Cookie Policy',
+    hero_subtitle: 'How we collect, use and protect your information — including cookies and data shared by AI data contributors.',
     blocks: PRIVACY_BLOCKS,
   },
   {
     slug: 'terms-of-service',
-    title: 'Terms of Service',
-    seo_title: 'Terms of Service | Dhvani.ai',
-    seo_description: 'Terms governing the use of the Dhvani.ai website and services.',
+    title: 'Website Terms of Use',
+    seo_title: 'Website Terms of Use | Dhvani.ai',
+    seo_description: 'Terms governing the use of the Dhvani.ai website and online services.',
     hero_eyebrow: 'Legal',
-    hero_title: 'Terms of Service',
-    hero_subtitle: 'The terms that govern use of our website and services.',
+    hero_title: 'Website Terms of Use',
+    hero_subtitle: 'The terms that govern use of our website and online services.',
     blocks: TERMS_BLOCKS,
   },
+  stubLegal(
+    'terms-and-conditions',
+    'Terms & Conditions',
+    'Commercial terms for Dhvani.ai services, projects and partner engagements.',
+    'service engagements, proposals and partner work'
+  ),
+  stubLegal(
+    'data-license-agreement',
+    'Data License Agreement',
+    'How licensed datasets and deliverables may be used by clients and partners.',
+    'dataset licensing and permitted use of deliverables'
+  ),
+  stubLegal(
+    'supplier-code-of-conduct',
+    'Supplier Code of Conduct',
+    'Standards expected from vendors, agencies and supply-chain partners.',
+    'ethical, quality and security expectations for suppliers'
+  ),
+  stubLegal(
+    'ccpa-privacy-statement',
+    'CCPA Privacy Statement',
+    'California Consumer Privacy Act disclosures for eligible residents.',
+    'CCPA rights, categories of personal information and requests'
+  ),
+  stubLegal(
+    'candidate-privacy-statement',
+    'Candidate Privacy Statement',
+    'How we process personal data for applicants, freelancers and candidates.',
+    'recruitment and candidate personal data'
+  ),
 ];

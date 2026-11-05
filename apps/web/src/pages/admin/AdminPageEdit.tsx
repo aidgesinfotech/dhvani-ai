@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight, ChevronDown, Save } from 'lucide-react';
 import { api, type PageData } from '../../lib/api';
-import { AdminHeader, Btn, Field, JsonEditor, Notice, Toggle, field } from './ui';
+import { AdminHeader, Btn, Field, JsonEditor, Notice, SaveDock, Toggle, field } from './ui';
 
 const humanize = (k: string) => k.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
@@ -126,11 +126,11 @@ export function AdminPageEdit() {
         ))}
       </div>
 
-      <div className="fixed bottom-4 right-4 z-40 md:bottom-6 md:right-8">
-        <Btn onClick={save} disabled={saving} className="shadow-[0_10px_40px_-10px_rgba(209,169,8,0.8)]">
+      <SaveDock>
+        <Btn onClick={save} disabled={saving} className="w-full shadow-[0_10px_40px_-10px_rgba(209,169,8,0.8)] lg:w-auto">
           <Save size={15} /> {saving ? 'Saving…' : 'Save changes'}
         </Btn>
-      </div>
+      </SaveDock>
     </div>
   );
 }

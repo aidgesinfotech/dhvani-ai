@@ -30,6 +30,7 @@ const AdminFaqs = lazy(() => import('./pages/admin/AdminFaqs').then((m) => ({ de
 const AdminSettings = lazy(() => import('./pages/admin/AdminSettings').then((m) => ({ default: m.AdminSettings })));
 const AdminLeads = lazy(() => import('./pages/admin/AdminLeads').then((m) => ({ default: m.AdminLeads })));
 const AdminLegalPage = lazy(() => import('./pages/admin/AdminLegalPage').then((m) => ({ default: m.AdminLegalPage })));
+const AdminHomeStudio = lazy(() => import('./pages/admin/AdminHomeStudio').then((m) => ({ default: m.AdminHomeStudio })));
 
 export default function App() {
   return (
@@ -49,12 +50,18 @@ export default function App() {
             <Route path="/contact-us" element={<ContactPage />} />
             <Route path="/privacy-policy" element={<LegalPage slug="privacy-policy" />} />
             <Route path="/terms-of-service" element={<LegalPage slug="terms-of-service" />} />
+            <Route path="/terms-and-conditions" element={<LegalPage slug="terms-and-conditions" />} />
+            <Route path="/data-license-agreement" element={<LegalPage slug="data-license-agreement" />} />
+            <Route path="/supplier-code-of-conduct" element={<LegalPage slug="supplier-code-of-conduct" />} />
+            <Route path="/ccpa-privacy-statement" element={<LegalPage slug="ccpa-privacy-statement" />} />
+            <Route path="/candidate-privacy-statement" element={<LegalPage slug="candidate-privacy-statement" />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
 
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
+            <Route path="homepage" element={<AdminHomeStudio />} />
             <Route path="leads" element={<AdminLeads />} />
             <Route path="pages" element={<AdminPages />} />
             <Route path="pages/:id" element={<AdminPageEdit />} />
@@ -64,8 +71,13 @@ export default function App() {
             <Route path="stats" element={<AdminStats />} />
             <Route path="testimonials" element={<AdminTestimonials />} />
             <Route path="faqs" element={<AdminFaqs />} />
-            <Route path="privacy-policy" element={<AdminLegalPage slug="privacy-policy" label="Privacy Policy" />} />
-            <Route path="terms-of-service" element={<AdminLegalPage slug="terms-of-service" label="Terms of Service" />} />
+            <Route path="privacy-policy" element={<AdminLegalPage slug="privacy-policy" label="Privacy and Cookie Policy" />} />
+            <Route path="terms-of-service" element={<AdminLegalPage slug="terms-of-service" label="Website Terms of Use" />} />
+            <Route path="terms-and-conditions" element={<AdminLegalPage slug="terms-and-conditions" label="Terms & Conditions" />} />
+            <Route path="data-license-agreement" element={<AdminLegalPage slug="data-license-agreement" label="Data License Agreement" />} />
+            <Route path="supplier-code-of-conduct" element={<AdminLegalPage slug="supplier-code-of-conduct" label="Supplier Code of Conduct" />} />
+            <Route path="ccpa-privacy-statement" element={<AdminLegalPage slug="ccpa-privacy-statement" label="CCPA Privacy Statement" />} />
+            <Route path="candidate-privacy-statement" element={<AdminLegalPage slug="candidate-privacy-statement" label="Candidate Privacy Statement" />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>
         </Routes>

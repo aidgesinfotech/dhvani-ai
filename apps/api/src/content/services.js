@@ -1,12 +1,15 @@
 /**
  * Services master content for Dhvani.ai.
  * `body` drives every block of the service detail page and is editable in the CMS.
+ * Categories follow the site taxonomy: Computer Vision · Generative AI · Physical AI · Agentic AI · Creative AI.
  */
+export const SERVICE_CATEGORIES = ['Computer Vision', 'Generative AI', 'Physical AI', 'Agentic AI', 'Creative AI'];
+
 export const SERVICES = [
   {
-    title: 'Speech Dataset Collection',
+    title: 'Speech & Audio Data Collection',
     slug: 'speech-data-collection',
-    category: 'AI Data Collection',
+    category: 'Generative AI',
     icon: 'mic',
     featured: 1,
     tags: ['ASR', 'TTS', 'Conversational AI'],
@@ -115,9 +118,9 @@ export const SERVICES = [
     },
   },
   {
-    title: 'Transcription, Segmentation, Proofreading, Translation & QA',
+    title: 'Audio Transcription & Segmentation',
     slug: 'transcription-translation-qa',
-    category: 'Data Processing & Annotation',
+    category: 'Generative AI',
     icon: 'languages',
     featured: 1,
     tags: ['100% Human-Made', '100+ Languages', 'JSON · SRT'],
@@ -234,9 +237,9 @@ export const SERVICES = [
     },
   },
   {
-    title: 'Data Annotation Services',
+    title: 'Image & Video Annotation & Labeling',
     slug: 'data-annotation',
-    category: 'Data Processing & Annotation',
+    category: 'Computer Vision',
     icon: 'tags',
     featured: 1,
     tags: ['Image & Video', 'Audio & Text', 'LLM & NLP'],
@@ -353,9 +356,9 @@ export const SERVICES = [
     },
   },
   {
-    title: 'Image & Video Dataset Collection',
+    title: 'Image & Video Data Collection',
     slug: 'image-video-data-collection',
-    category: 'AI Data Collection',
+    category: 'Computer Vision',
     icon: 'camera',
     featured: 1,
     tags: ['On-Site', 'Crowd-Sourced', 'Computer Vision'],
@@ -465,84 +468,94 @@ export const SERVICES = [
     },
   },
   {
-    title: 'Egocentric Video Data Collection',
+    title: 'Egocentric Video Data Collection for Robotics & Physical AI',
     slug: 'egocentric-video-data-collection',
-    category: 'AI Data Collection',
+    category: 'Physical AI',
     icon: 'video',
     featured: 1,
-    tags: ['First-Person', 'Robotics', 'Video Understanding'],
+    tags: ['Individual-Based', 'Industrial Workforce', 'Road Intelligence'],
     image_label: 'First-person POV video — hands interacting with objects during a task',
-    excerpt:
-      'First-person video data for next-generation AI — real-world activities, interactions and task workflows captured from the human point of view.',
+    excerpt: 'Individual-Based & Industrial Workforce-Based Real-World Data Collection.',
     description:
-      'Real-world video datasets designed for Computer Vision, Video Understanding, Robotics, and AI systems. First-person (egocentric) video datasets for training, fine-tuning, and evaluating next-generation AI systems.',
-    seo_title: 'Egocentric Video Data Collection | First-Person Video Datasets | Dhvani.ai',
+      'Egocentric Data Collection for Physical AI — individual everyday activity, industrial workforce workflows, and road / traffic intelligence captured as first-person and real-world video programmes.',
+    seo_title: 'Physical AI Data Collection | Individual & Industrial Egocentric Data | Dhvani.Ai',
     seo_description:
-      'First-person egocentric video datasets for robotics, video understanding and embodied AI — real-world activities, object manipulation and task workflows captured at scale.',
+      'Individual-based and industrial workforce egocentric video data, plus road intelligence for traffic systems and autonomous mobility — captured for robotics and Physical AI.',
     body: {
-      tagline: 'Real-World Video Data for Smarter AI',
+      tagline: 'Individual-Based & Industrial Workforce-Based Real-World Data Collection.',
       overview:
-        'Real-world video datasets designed for Computer Vision, Video Understanding, Robotics, and AI systems. First-person (egocentric) video datasets for training, fine-tuning, and evaluating next-generation AI systems.\n\nCapture real-world human activities, interactions, object manipulation, and task workflows from a first-person perspective using structured, scalable data collection programs.\n\nUsing head-mounted cameras, smart glasses and wearable rigs, our contributors record how people actually see and do things — in kitchens, workshops, warehouses, stores and streets — giving robots and AI assistants the human perspective they need to understand and act in the physical world.',
+        'Egocentric Data Collection for robotics and Physical AI.\n\nDhvani.Ai runs three real-world capture programmes: individual first-person activity, industrial workforce egocentric video, and road intelligence for traffic systems and autonomous mobility.',
       highlights: [
-        'First-person video data for next-generation AI',
-        'Human activities, interactions & object manipulation',
-        'Structured, scalable data collection programs',
-        'Diverse environments, people & regions',
-        'Consent-driven, privacy-aware capture',
+        'Individual everyday activities & hand–object interactions',
+        'Industrial manufacturing, warehouse and workforce workflows',
+        'Road, traffic and autonomous mobility scenes',
+        'RGB video with optional IMU / motion and GPS metadata',
+        'Consent-driven, protocol-led Physical AI datasets',
       ],
-      blocks_title: 'How We Capture',
-      blocks: [
+      programs_title: 'Three capture programmes',
+      programs: [
         {
-          title: 'Wearable Capture Rigs',
-          icon: 'eye',
-          body: 'Head-mounted cameras, smart glasses and chest mounts configured to your resolution, frame-rate and field-of-view requirements.',
-        },
-        {
-          title: 'Scripted Task Programs',
-          icon: 'list-checks',
-          body: 'Step-by-step task protocols — cooking, assembly, repair, packing — so every recording covers the actions your model must learn.',
-        },
-        {
-          title: 'Natural Activity Capture',
-          icon: 'activity',
-          body: 'Unscripted daily-life recordings that capture genuine behaviour, variation and the long tail of real-world situations.',
-        },
-        {
-          title: 'Annotation-Ready Delivery',
-          icon: 'tags',
-          body: 'Optional step segmentation, action labels and object tags delivered alongside raw footage and metadata.',
-        },
-      ],
-      groups_title: 'Coverage',
-      groups: [
-        {
-          title: 'Activities We Capture',
-          items: [
-            'Cooking & household tasks',
-            'Assembly, repair & DIY',
-            'Warehouse & industrial workflows',
-            'Retail & shopping journeys',
-            'Outdoor navigation & commuting',
-            'Hand–object interactions',
+          title: '01. Individual-Based Egocentric Data Collection',
+          subtitle:
+            'First-person video recordings of individual contributors performing everyday activities, human movements, hand-object interactions and daily task demonstrations.',
+          chips: ['Human Activities', 'First-Person Video', 'Object Interactions'],
+          body: 'Dhvani.Ai facilitates individual-based real-world data collection through a global network of contributors, capturing authentic first-person experiences, everyday human activities and object interactions to support robotics, Physical AI and multimodal AI model development.',
+          services_title: 'Our Services',
+          services: [
+            'Egocentric / First-Person Video Collection',
+            'Human Activity & Behaviour Data Collection',
+            'Hand-Object Interaction Data Collection',
+            'Everyday Activities & Task Demonstrations',
+            'RGB Video Data Collection',
+            'IMU & Motion Sensor Data Collection',
           ],
+          icon: 'users',
         },
         {
-          title: 'Metadata & Labels',
-          items: [
-            'Activity & step segmentation',
-            'Action and object labels',
-            'Hand pose & interaction tags',
-            'Scene & environment metadata',
-            'Participant demographics (anonymised)',
+          title: '02. Industrial & Workforce-Based Egocentric Data Collection',
+          subtitle:
+            'First-person video recordings of industrial workers performing manufacturing, assembly, warehouse, logistics and operational workflows.',
+          chips: ['Industrial Workflows', 'Manufacturing', 'Workforce Activities'],
+          body: 'Dhvani.Ai facilitates industrial-scale egocentric data collection through partnerships with manufacturing facilities, industrial organizations, workforce networks and field agencies. We capture authentic workplace activities, operational workflows and human-machine interactions to support industrial robotics and Physical AI systems.',
+          services_title: 'Our Services',
+          services: [
+            'Industrial Workflow Video Collection',
+            'Factory & Manufacturing Activity Data Collection',
+            'Industrial Worker Activity Data Collection',
+            'Warehouse & Logistics Operations Data',
+            'Human-Machine Interaction Data Collection',
+            'Equipment & Tool Handling Data',
+            'RGB Video Data Collection',
+            'IMU & Motion Sensor Data Collection',
           ],
+          icon: 'building-2',
+        },
+        {
+          title: '03. Road Intelligence | Traffic Systems | Autonomous Mobility',
+          subtitle:
+            'Real-world traffic and road data collection for computer vision, autonomous driving and mobility AI systems.',
+          chips: ['Road Intelligence', 'Traffic Systems', 'Autonomous Mobility'],
+          body: 'Dhvani.Ai supports real-world traffic and road data collection programmes to help AI companies, automotive technology developers and intelligent transportation providers build and improve computer vision, autonomous driving and mobility AI systems.',
+          services_title: 'Our Services',
+          services: [
+            'Traffic & Road Scene Data Collection',
+            'Vehicle & Pedestrian Data Collection',
+            'Traffic Signal & Signboard Data Collection',
+            'Road Infrastructure Data Collection',
+            'Road User Behaviour Data Collection',
+            'Intersection & Junction Data Collection',
+            'RGB Road Video Data Collection',
+            'GPS & Location Metadata Collection',
+          ],
+          icon: 'car',
         },
       ],
       use_cases: [
         'Robotics & embodied AI',
+        'Physical AI & autonomous systems',
+        'Industrial workflow understanding',
         'Video understanding models',
-        'AR / smart-glasses assistants',
-        'Action recognition & anticipation',
-        'World models & simulation',
+        'Autonomous driving & mobility',
         'Human–robot interaction',
       ],
       quality: [
@@ -552,29 +565,23 @@ export const SERVICES = [
         'Informed consent from every participant',
         'Secure, encrypted transfer',
       ],
-      formats: ['MP4 / MOV', 'JSON metadata', 'CSV manifests', 'Client Tool'],
+      formats: ['MP4 / MOV', 'JSON metadata', 'CSV manifests', 'IMU / GPS sidecars', 'Client Tool'],
       closing:
-        'Dhvani.ai delivers egocentric video datasets that teach AI how the world looks — and works — through human eyes.',
+        'Dhvani.Ai delivers individual, industrial and road Physical AI datasets that teach models how people act, work and move in the real world.',
       faqs: [
         { question: 'What is egocentric video data?', answer: 'It is first-person footage, usually from a head-mounted camera or smart glasses. The clip shows what a person sees while they act — hands, objects and the task.' },
-        { question: 'Who is this dataset for?', answer: 'Robotics and embodied AI teams, video-understanding labs, AR and smart-glasses products, and action-recognition or world-model research.' },
-        { question: 'Can you design custom task scripts?', answer: 'Yes. We write step-by-step protocols around the actions, objects and rooms your model must learn, then run them across contributors.' },
-        { question: 'What cameras and rigs do you use?', answer: 'Head-mounted cameras, smart glasses and chest mounts, set to your resolution, frame rate and field of view.' },
-        { question: 'Can you record ultrawide footage?', answer: 'Yes. Ultrawide first-person passes keep hands, the workspace and the surrounding scene in one frame.' },
-        { question: 'Do you capture with audio and without audio?', answer: 'Both. Silent clips teach motion and objects. Audio clips keep speech, tool sounds and room noise when you need them.' },
-        { question: 'Which environments can you film in?', answer: 'Kitchens, homes, workshops, warehouses, stores, streets and other everyday places matched to your brief.' },
+        { question: 'Do you cover individual and industrial programmes?', answer: 'Yes. We run individual everyday-activity capture and industrial workforce capture through facilities, agencies and field partners.' },
+        { question: 'Do you collect road and traffic data too?', answer: 'Yes. Road Intelligence programmes cover traffic scenes, vehicles, pedestrians, signals, infrastructure, junctions and GPS metadata for mobility AI.' },
+        { question: 'What sensors can you attach?', answer: 'RGB video is standard. Individual and industrial programmes can include IMU / motion sensor data; road programmes can include GPS and location metadata.' },
+        { question: 'Can we start with a pilot?', answer: 'Yes. Most programmes start with a short pilot so you can check framing, protocol and labels before the same setup is scaled.' },
         { question: 'How do you handle faces and consent?', answer: 'Every participant consents before recording. Faces are blurred when required, and files move over encrypted transfer.' },
-        { question: 'Can you label actions, hands and objects?', answer: 'Yes. Optional labels cover steps, actions, objects, hand interactions and scene metadata, shipped with the raw video.' },
-        { question: 'How do you check quality?', answer: 'Reviewers check resolution, frame rate, stability, task completion and whether the protocol was followed.' },
-        { question: 'Can we start with a pilot?', answer: 'Yes. Most programmes start with a short pilot so you can check framing and labels before the same setup is scaled.' },
-        { question: 'What file formats do you deliver?', answer: 'MP4 or MOV, JSON metadata, CSV manifests, or delivery into your own tool.' },
       ],
     },
   },
   {
-    title: 'OCR & Document AI Data',
+    title: 'OCR — Printed & Handwritten Text Recognition',
     slug: 'ocr-document-ai-data',
-    category: 'AI Data Collection',
+    category: 'Computer Vision',
     icon: 'scan-text',
     featured: 0,
     tags: ['OCR', 'Document AI', 'IDP'],
@@ -673,7 +680,7 @@ export const SERVICES = [
   {
     title: 'AI Data Validation & Evaluation',
     slug: 'ai-data-validation-evaluation',
-    category: 'Validation & Evaluation',
+    category: 'Generative AI',
     icon: 'shield-check',
     featured: 1,
     tags: ['LLM Evaluation', 'Human-in-the-Loop', 'Multimodal'],
@@ -778,7 +785,7 @@ export const SERVICES = [
   {
     title: 'Studio Recording (TTS – Text-to-Speech Data)',
     slug: 'studio-recording-tts',
-    category: 'Voice & Studio',
+    category: 'Generative AI',
     icon: 'audio-lines',
     featured: 1,
     tags: ['TTS', 'AI Dubbing', 'Prompt Recording'],
@@ -877,7 +884,7 @@ export const SERVICES = [
   {
     title: 'Agentic AI Solutions',
     slug: 'agentic-ai-solutions',
-    category: 'AI Solutions',
+    category: 'Agentic AI',
     icon: 'bot',
     featured: 1,
     tags: ['AI Agents', 'AI Chatbots', 'WhatsApp AI'],

@@ -85,10 +85,22 @@ export type TitledItem = { title: string; body?: string; icon?: string };
 export type ItemGroup = { title: string; items: string[] };
 export type QA = { question: string; answer: string };
 
+export type ServiceProgram = {
+  title: string;
+  subtitle?: string;
+  chips?: string[];
+  body?: string;
+  services_title?: string;
+  services?: string[];
+  icon?: string;
+};
+
 export type ServiceBody = {
   tagline?: string;
   overview?: string;
   highlights?: string[];
+  programs_title?: string;
+  programs?: ServiceProgram[];
   blocks_title?: string;
   blocks?: TitledItem[];
   groups_title?: string;

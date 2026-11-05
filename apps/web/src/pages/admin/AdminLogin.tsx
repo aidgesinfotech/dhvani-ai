@@ -28,10 +28,10 @@ export function AdminLogin() {
   };
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black p-4">
+    <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-black px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))]">
       <div className="absolute inset-0 bg-grid" aria-hidden />
       <div className="absolute -top-40 left-1/2 h-[30rem] w-[40rem] max-w-[140vw] -translate-x-1/2 glow-blue" aria-hidden />
-      <form onSubmit={submit} className="card relative w-full max-w-sm space-y-5 p-8">
+      <form onSubmit={submit} className="card relative w-full max-w-sm space-y-5 p-6 sm:p-8">
         <div className="text-center">
           <img src={LOGO_SRC} alt="Dhvani.ai" className="mx-auto h-16 w-auto" />
           <h1 className="mt-4 font-display text-2xl font-semibold text-white">Admin Login</h1>

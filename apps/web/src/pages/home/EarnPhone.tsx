@@ -1,14 +1,7 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Check, Mic, ShieldCheck, Sparkles, Wallet } from 'lucide-react';
 
 type Scene = 'form' | 'success' | 'claim' | 'thanks';
-
-function wait(ms: number, bucket: number[]) {
-  return new Promise<void>((resolve) => {
-    bucket.push(window.setTimeout(resolve, ms));
-  });
-}
 
 function Caret() {
   return <span className="ml-0.5 inline-block h-3.5 w-px animate-pulse bg-gold" aria-hidden />;
@@ -73,52 +66,54 @@ function StatusBar() {
   );
 }
 
-export function EarnPhone() {
-  const reduce = useReducedMotion();
-  const [scene, setScene] = useState<Scene>(reduce ? 'thanks' : 'form');
-  const [step, setStep] = useState(reduce ? 5 : 0);
+const LOOP: { scene: Scene; step: number; ms: number }[] = [
+  { scene: 'form', step: 0, ms: 450 },
+  { scene: 'form', step: 1, ms: 700 },
+  { scene: 'form', step: 2, ms: 700 },
+  { scene: 'form', step: 3, ms: 650 },
+  { scene: 'form', step: 4, ms: 700 },
+  { scene: 'form', step: 5, ms: 800 },
+  { scene: 'success', step: 5, ms: 2100 },
+  { scene: 'claim', step: 5, ms: 2800 },
+  { scene: 'thanks', step: 5, ms: 2800 },
+];
+
+const LOOP_MS = LOOP.reduce((sum, frame) => sum + frame.ms, 0);
+
+function frameAt(elapsed: number) {
+  const t = ((elapsed % LOOP_MS) + LOOP_MS) % LOOP_MS;
+  let acc = 0;
+  for (const frame of LOOP) {
+    acc += frame.ms;
+    if (t < acc) return frame;
+  }
+  return LOOP[0];
+}
+
+export function EarnPhone({ tall = false }: { tall?: boolean }) {
+  const [scene, setScene] = useState<Scene>('form');
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
-    if (reduce) return;
-    let alive = true;
-    const timers: number[] = [];
-    const run = async () => {
-      while (alive) {
-        setScene('form');
-        setStep(0);
-        await wait(450, timers);
-        if (!alive) return;
-        setStep(1);
-        await wait(700, timers);
-        if (!alive) return;
-        setStep(2);
-        await wait(700, timers);
-        if (!alive) return;
-        setStep(3);
-        await wait(650, timers);
-        if (!alive) return;
-        setStep(4);
-        await wait(700, timers);
-        if (!alive) return;
-        setStep(5);
-        await wait(800, timers);
-        if (!alive) return;
-        setScene('success');
-        await wait(2100, timers);
-        if (!alive) return;
-        setScene('claim');
-        await wait(2800, timers);
-        if (!alive) return;
-        setScene('thanks');
-        await wait(3200, timers);
-      }
+    const started = performance.now();
+    let last = '';
+    const apply = () => {
+      const frame = frameAt(performance.now() - started);
+      const key = `${frame.scene}:${frame.step}`;
+      if (key === last) return;
+      last = key;
+      setScene(frame.scene);
+      setStep(frame.step);
     };
-    run();
+    apply();
+    const timer = window.setInterval(apply, 200);
+    const onShow = () => apply();
+    document.addEventListener('visibilitychange', onShow);
     return () => {
-      alive = false;
-      timers.forEach((id) => window.clearTimeout(id));
+      window.clearInterval(timer);
+      document.removeEventListener('visibilitychange', onShow);
     };
-  }, [reduce]);
+  }, []);
 
   const fieldState = (index: number) => {
     if (step > index) return 'done' as const;
@@ -127,32 +122,24 @@ export function EarnPhone() {
   };
 
   return (
-    <div className="relative mx-auto w-[240px] sm:w-[252px] lg:w-[268px]">
+    <div className={tall ? 'relative flex h-full w-auto max-w-full flex-col aspect-[9/19.5]' : 'relative mx-auto w-[240px] sm:w-[252px] lg:w-[268px]'}>
       <div
         className="absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle,rgba(209,169,8,0.28),rgba(55,24,200,0.16)_42%,transparent_70%)] blur-2xl"
         aria-hidden
       />
-      <div className="relative rounded-[2.55rem] bg-gradient-to-b from-[#4a4a52] via-[#1c1c22] to-[#0a0a0d] p-[3px] shadow-[0_28px_70px_-24px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.35)]">
+      <div className={`relative min-h-0 bg-gradient-to-b from-[#4a4a52] via-[#1c1c22] to-[#0a0a0d] p-[3px] shadow-[0_28px_70px_-24px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.08),inset_0_1px_0_rgba(255,255,255,0.35)] ${tall ? 'flex-1 rounded-[2.7rem]' : 'rounded-[2.55rem]'}`}>
         <span className="absolute top-[22%] -left-[2px] h-6 w-[3px] rounded-l bg-[#2a2a30]" aria-hidden />
         <span className="absolute top-[32%] -left-[2px] h-10 w-[3px] rounded-l bg-[#2c2c32]" aria-hidden />
         <span className="absolute top-[42%] -left-[2px] h-10 w-[3px] rounded-l bg-[#2c2c32]" aria-hidden />
         <span className="absolute top-[34%] -right-[2px] h-14 w-[3px] rounded-r bg-[#2c2c32]" aria-hidden />
-        <div className="relative flex aspect-[9/16.6] flex-col overflow-hidden rounded-[2.35rem] bg-[#07070c] lg:aspect-[9/19.5]">
+        <div className={`relative flex flex-col overflow-hidden bg-[#07070c] ${tall ? 'h-full rounded-[2.5rem]' : 'aspect-[9/16.6] rounded-[2.35rem] lg:aspect-[9/19.5]'}`}>
           <span className="pointer-events-none absolute inset-x-0 top-0 z-20 h-24 bg-gradient-to-b from-white/[0.07] to-transparent" aria-hidden />
           <StatusBar />
           <span className="absolute top-2.5 left-1/2 z-20 h-[22px] w-[92px] -translate-x-1/2 rounded-full bg-black shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]" aria-hidden />
 
           <div className="relative min-h-0 flex-1">
-            <AnimatePresence mode="wait">
               {scene === 'form' && (
-                <motion.div
-                  key="form"
-                  className="absolute inset-0 flex flex-col overflow-hidden px-3 pt-1.5 pb-2"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.35 }}
-                >
+                <div key="form" className="absolute inset-0 flex flex-col overflow-hidden px-3 pt-1.5 pb-2">
                   <div className="flex items-center justify-between">
                     <p className="font-display text-[13px] font-semibold tracking-tight text-white">
                       Dhvani<span className="text-gold">.ai</span>
@@ -191,18 +178,11 @@ export function EarnPhone() {
                   >
                     {step >= 5 ? 'Submitting…' : 'Submit task'}
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {scene === 'success' && (
-                <motion.div
-                  key="success"
-                  className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35 }}
-                >
+                <div key="success" className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
                   <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gold text-black">
                     <span className="absolute inset-0 rounded-full bg-gold/40 pulse-ring" />
                     <Check size={30} strokeWidth={2.6} />
@@ -216,18 +196,11 @@ export function EarnPhone() {
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {scene === 'claim' && (
-                <motion.div
-                  key="claim"
-                  className="absolute inset-0 flex flex-col px-4 pt-4 pb-2"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.35 }}
-                >
+                <div key="claim" className="absolute inset-0 flex flex-col px-4 pt-4 pb-2">
                   <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/15 text-gold">
                     <Wallet size={22} />
                   </span>
@@ -238,18 +211,11 @@ export function EarnPhone() {
                   <div className="mt-auto flex h-11 items-center justify-center rounded-full bg-gold text-sm font-semibold text-black">
                     Claim XXX
                   </div>
-                </motion.div>
+                </div>
               )}
 
               {scene === 'thanks' && (
-                <motion.div
-                  key="thanks"
-                  className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35 }}
-                >
+                <div key="thanks" className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
                   <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-royal-light/30 bg-royal/25 text-royal-light">
                     <Sparkles size={24} />
                   </span>
@@ -260,9 +226,8 @@ export function EarnPhone() {
                   <p className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-xs text-white">
                     <ShieldCheck size={14} className="text-gold" /> XXX added to your balance
                   </p>
-                </motion.div>
+                </div>
               )}
-            </AnimatePresence>
           </div>
 
           <div className="px-3 pt-1 pb-2.5">
@@ -285,7 +250,7 @@ export function EarnPhone() {
           </div>
         </div>
       </div>
-      <p className="mx-auto mt-3 w-fit rounded-full border border-white/10 bg-black/70 px-3 py-1 text-center font-mono text-[10px] tracking-wide text-white/70">
+      <p className="mx-auto mt-3 w-fit shrink-0 rounded-full border border-white/10 bg-black/70 px-3 py-1 text-center font-mono text-[10px] tracking-wide text-white/70">
         Payout set per task
       </p>
     </div>

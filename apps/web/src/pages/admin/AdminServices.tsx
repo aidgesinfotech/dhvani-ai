@@ -92,7 +92,7 @@ export function AdminServices() {
 
       <div className="space-y-2">
         {items.map((s) => (
-          <div key={s.id} className="card flex flex-wrap items-center gap-4 p-4">
+          <div key={s.id} className="card flex flex-wrap items-center gap-3 p-4 sm:gap-4">
             <span className="icon-tile !h-11 !w-11">
               <Icon name={s.icon} size={18} />
             </span>
@@ -107,14 +107,14 @@ export function AdminServices() {
               {!s.published && <Badge tone="red">hidden</Badge>}
               <span className="font-mono text-xs text-white/30">#{s.sort_order}</span>
             </div>
-            <div className="flex items-center gap-1">
-              <a href={`/services/${s.slug}`} target="_blank" rel="noreferrer" className="p-2 text-white/40 hover:text-gold" aria-label="View">
+            <div className="ml-auto flex items-center gap-1">
+              <a href={`/services/${s.slug}`} target="_blank" rel="noreferrer" className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-white/50 hover:bg-white/5 hover:text-gold" aria-label="View">
                 <ArrowUpRight size={16} />
               </a>
-              <button type="button" className="p-2 text-white/60 hover:text-gold" onClick={() => open(s)} aria-label="Edit">
+              <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-white/70 hover:bg-white/5 hover:text-gold" onClick={() => open(s)} aria-label="Edit">
                 <Pencil size={16} />
               </button>
-              <button type="button" className="p-2 text-red-400/70 hover:text-red-300" onClick={() => remove(s)} aria-label="Delete">
+              <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-red-300/80 hover:bg-red-500/10" onClick={() => remove(s)} aria-label="Delete">
                 <Trash2 size={16} />
               </button>
             </div>
@@ -130,7 +130,7 @@ export function AdminServices() {
                 key={t}
                 type="button"
                 onClick={() => setTab(t)}
-                className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium capitalize ${tab === t ? 'bg-gold text-black' : 'text-white/60 hover:text-white'}`}
+                className={`min-h-11 flex-1 rounded-lg px-2 py-2 text-xs font-medium capitalize sm:text-sm ${tab === t ? 'bg-gold text-black' : 'text-white/60 hover:text-white'}`}
               >
                 {t === 'content' ? 'Page content' : t === 'seo' ? 'SEO' : 'Basics'}
               </button>

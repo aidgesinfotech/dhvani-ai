@@ -64,7 +64,7 @@ publicRouter.get(
   '/public/site',
   h(async (_req, res) => {
     const [settingsRows, services, stats, testimonials, faqs] = await Promise.all([
-      query(`SELECT setting_key, setting_value FROM site_settings`),
+      query(`SELECT setting_key, setting_value FROM site_settings WHERE setting_key <> 'homepage_studio'`),
       query(
         `SELECT id, title, slug, category, excerpt, icon, image_url, image_label, tags, featured, sort_order
          FROM services WHERE published = 1 ORDER BY sort_order ASC, id ASC`
@@ -308,7 +308,7 @@ adminRouter.get(
 adminRouter.get(
   '/settings',
   h(async (_req, res) => {
-    ok(res, settingsToObject(await query(`SELECT setting_key, setting_value FROM site_settings`)));
+    ok(res, settingsToObject(await query(`SELECT setting_key, setting_value FROM site_settings WHERE setting_key <> 'homepage_studio'`)));
   })
 );
 
@@ -316,6 +316,7 @@ adminRouter.put(
   '/settings',
   h(async (req, res) => {
     for (const [key, value] of Object.entries(req.body || {})) {
+      if (key === 'homepage_studio') continue;
       const v = typeof value === 'string' ? value : JSON.stringify(value ?? '');
       await query(
         `INSERT INTO site_settings (setting_key, setting_value) VALUES (?, ?)
@@ -323,7 +324,48 @@ adminRouter.put(
         [key.slice(0, 191), v]
       );
     }
-    ok(res, settingsToObject(await query(`SELECT setting_key, setting_value FROM site_settings`)));
+    ok(res, settingsToObject(await query(`SELECT setting_key, setting_value FROM site_settings WHERE setting_key <> 'homepage_studio'`)));
+  })
+);
+
+const HOMEPAGE_KEY = 'homepage_studio';
+
+async function readHomepage() {
+  const rows = await query(`SELECT setting_value FROM site_settings WHERE setting_key = ? LIMIT 1`, [HOMEPAGE_KEY]);
+  if (!rows.length || !rows[0].setting_value) return null;
+  try {
+    const parsed = JSON.parse(rows[0].setting_value);
+    return parsed && typeof parsed === 'object' ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+publicRouter.get(
+  '/public/homepage',
+  h(async (_req, res) => {
+    ok(res, await readHomepage());
+  })
+);
+
+adminRouter.get(
+  '/homepage',
+  h(async (_req, res) => {
+    ok(res, await readHomepage());
+  })
+);
+
+adminRouter.put(
+  '/homepage',
+  h(async (req, res) => {
+    const body = req.body || {};
+    if (!body.hero || typeof body.hero !== 'object') return fail(res, 400, 'Homepage content is missing a hero');
+    await query(
+      `INSERT INTO site_settings (setting_key, setting_value) VALUES (?, ?)
+       ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)`,
+      [HOMEPAGE_KEY, JSON.stringify(body)]
+    );
+    ok(res, await readHomepage());
   })
 );
 

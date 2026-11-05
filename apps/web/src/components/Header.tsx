@@ -1,19 +1,19 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import { ArrowUpRight, ChevronDown, Menu, Star, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSite } from '../context/SiteContext';
 import { Logo } from './ui/Logo';
 import { Icon } from './ui/Icon';
 
 const links = [
-  { to: '/', label: 'Home' },
-  { to: '/about-us', label: 'About Us' },
-  { to: '/services/egocentric-video-data-collection', label: 'Egocentric', featured: true },
-  { to: '/services', label: 'Services', mega: true },
-  { to: '/blog', label: 'Blog' },
-  { to: '/collaborate-with-us', label: 'Collaborate' },
-  { to: '/contact-us', label: 'Contact' },
+  { to: '/', label: 'Home', key: 'nav_home' },
+  { to: '/about-us', label: 'About Us', key: 'nav_about' },
+  { to: '/services/egocentric-video-data-collection', label: 'Egocentric', key: 'nav_egocentric', featured: true },
+  { to: '/services', label: 'Services', key: 'nav_services', mega: true },
+  { to: '/blog', label: 'Blog', key: 'nav_blog' },
+  { to: '/collaborate-with-us', label: 'Collaborate', key: 'nav_collaborate' },
+  { to: '/contact-us', label: 'Contact', key: 'nav_contact' },
 ];
 
 export function Header() {
@@ -44,15 +44,20 @@ export function Header() {
   }, [open]);
 
   const grouped = useMemo(() => {
+    const order = ['Computer Vision', 'Generative AI', 'Physical AI', 'Agentic AI', 'Creative AI'];
     const map = new Map<string, typeof services>();
     services.forEach((s) => {
       const k = s.category || 'Services';
       map.set(k, [...(map.get(k) || []), s]);
     });
-    return [...map.entries()];
+    const ranked = order.filter((k) => map.has(k)).map((k) => [k, map.get(k)!] as const);
+    const rest = [...map.entries()].filter(([k]) => !order.includes(k));
+    return [...ranked, ...rest];
   }, [services]);
 
   const cta = settings.cta_label || "Let's Talk";
+  const labelFor = (link: (typeof links)[number]) => settings[link.key] || link.label;
+  const featured = (link: (typeof links)[number]) => 'featured' in link && link.featured;
 
   return (
     <>
@@ -83,7 +88,7 @@ export function Header() {
                       aria-expanded={mega}
                       onFocus={() => setMega(true)}
                     >
-                      {l.label}
+                      {labelFor(l)}
                       <ChevronDown size={14} className={`transition-transform ${mega ? 'rotate-180' : ''}`} />
                     </NavLink>
                   </div>
@@ -94,27 +99,14 @@ export function Header() {
                     end={l.to === '/'}
                     onMouseEnter={() => setMega(false)}
                     className={({ isActive }) =>
-                      `px-3.5 py-2 text-sm font-medium rounded-full transition-colors ${
-                        'featured' in l && l.featured
-                          ? 'text-gold'
-                          : isActive
-                            ? 'text-gold'
-                            : 'text-fg-2 hover:text-white'
-                      }`
+                      featured(l)
+                        ? 'mx-1.5 inline-flex h-8 items-center rounded-full bg-gold px-3.5 text-[12px] leading-none font-semibold text-black shadow-[0_0_16px_-4px_rgba(209,169,8,0.95)] transition-colors hover:bg-gold-light'
+                        : `px-3.5 py-2 text-sm font-medium rounded-full transition-colors ${
+                            isActive ? 'text-gold' : 'text-fg-2 hover:text-white'
+                          }`
                     }
                   >
-                    {'featured' in l && l.featured ? (
-                      <span className="relative inline-block text-gold drop-shadow-[0_0_10px_rgba(209,169,8,0.55)]">
-                        <Star
-                          size={9}
-                          className="absolute -top-2 left-0 fill-gold text-gold drop-shadow-[0_0_6px_rgba(209,169,8,0.9)]"
-                          aria-hidden
-                        />
-                        {l.label}
-                      </span>
-                    ) : (
-                      l.label
-                    )}
+                    {labelFor(l)}
                   </NavLink>
                 )
               )}
@@ -145,8 +137,8 @@ export function Header() {
                   className="absolute left-0 right-0 top-full pt-3 hidden lg:block"
                 >
                   <div className="rounded-[1.5rem] border border-line-2 bg-[#0a0a0d] p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.95)]">
-                    <div className="grid grid-cols-[1fr_1fr_1fr_16rem] gap-6">
-                      <div className="col-span-3 grid grid-cols-3 gap-x-6 gap-y-5">
+                    <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_15rem] gap-5">
+                      <div className="col-span-5 grid grid-cols-5 gap-x-4 gap-y-5">
                         {grouped.map(([cat, list]) => (
                           <div key={cat}>
                             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-royal-light mb-2">{cat}</p>
@@ -155,9 +147,9 @@ export function Header() {
                                 <li key={s.id}>
                                   <Link
                                     to={`/services/${s.slug}`}
-                                    className="group flex items-center gap-2.5 rounded-xl px-2 py-1.5 text-sm text-fg-2 hover:bg-white/5 hover:text-white transition-colors"
+                                    className="group flex items-start gap-2 rounded-xl px-1.5 py-1.5 text-[13px] text-fg-2 hover:bg-white/5 hover:text-white transition-colors"
                                   >
-                                    <Icon name={s.icon} size={16} className="text-gold shrink-0" />
+                                    <Icon name={s.icon} size={15} className="mt-0.5 text-gold shrink-0" />
                                     <span className="leading-snug">{s.title}</span>
                                   </Link>
                                 </li>
@@ -221,7 +213,7 @@ export function Header() {
                         onClick={() => setMobileServices((v) => !v)}
                         aria-expanded={mobileServices}
                       >
-                        {l.label}
+                        {labelFor(l)}
                         <ChevronDown size={20} className={`text-gold transition-transform ${mobileServices ? 'rotate-180' : ''}`} />
                       </button>
                       {mobileServices && (
@@ -248,24 +240,13 @@ export function Header() {
                       to={l.to}
                       end={l.to === '/'}
                       className={({ isActive }) =>
-                        `block py-4 font-display text-2xl font-semibold ${
-                          ('featured' in l && l.featured) || isActive ? 'text-gold' : 'text-white'
-                        }`
+                        featured(l)
+                          ? 'my-4 inline-flex h-10 items-center rounded-full bg-gold px-4 text-sm leading-none font-semibold text-black shadow-[0_0_16px_-4px_rgba(209,169,8,0.95)]'
+                          : `block py-4 font-display text-2xl font-semibold ${isActive ? 'text-gold' : 'text-white'}`
                       }
                       onClick={() => setOpen(false)}
                     >
-                      {'featured' in l && l.featured ? (
-                        <span className="relative inline-block text-gold drop-shadow-[0_0_12px_rgba(209,169,8,0.5)]">
-                          <Star
-                            size={12}
-                            className="absolute -top-1 left-0 fill-gold text-gold drop-shadow-[0_0_6px_rgba(209,169,8,0.9)]"
-                            aria-hidden
-                          />
-                          {l.label}
-                        </span>
-                      ) : (
-                        l.label
-                      )}
+                      {labelFor(l)}
                     </NavLink>
                   )}
                 </motion.div>

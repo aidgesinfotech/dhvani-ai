@@ -130,8 +130,8 @@ export function EgocentricHero({
             <ChevronRight size={12} />
             <span className="text-white/80">Egocentric</span>
           </nav>
-          <span className="eyebrow">For training · First-person video</span>
-          <h1 className="mt-4 font-display text-[2.5rem] leading-[0.98] font-semibold text-balance text-white sm:text-5xl lg:text-[4.15rem]">
+          <span className="eyebrow">Egocentric Data Collection</span>
+          <h1 className="mt-4 font-display text-[2.35rem] leading-[0.98] font-semibold text-balance text-white sm:text-5xl lg:text-[3.6rem]">
             {head}
             {tail && <span className="text-gradient-gold">{tail}</span>}
           </h1>
@@ -150,6 +150,9 @@ export function EgocentricHero({
               Discuss your project
               <ArrowUpRight size={17} />
             </Link>
+            <a href="#ego-programs" className="btn btn-ghost">
+              View programmes
+            </a>
             <a href="#ego-samples" className="btn btn-ghost">
               Watch samples
             </a>

@@ -18,7 +18,13 @@ export function ServicesPage() {
   const steps = useProcess('services');
   const [cat, setCat] = useState('All');
 
-  const categories = useMemo(() => ['All', ...new Set(services.map((x) => x.category || 'Services'))], [services]);
+  const categories = useMemo(() => {
+    const order = ['Computer Vision', 'Generative AI', 'Physical AI', 'Agentic AI', 'Creative AI'];
+    const present = [...new Set(services.map((x) => x.category || 'Services'))];
+    const ranked = order.filter((c) => present.includes(c));
+    const rest = present.filter((c) => !order.includes(c));
+    return ['All', ...ranked, ...rest];
+  }, [services]);
   const filtered = cat === 'All' ? services : services.filter((x) => (x.category || 'Services') === cat);
 
   if (loading || !page) return <PageLoader />;
@@ -42,7 +48,7 @@ export function ServicesPage() {
         <section className="section !pt-4">
           <div className="container-x">
             <SectionHeading eyebrow={str(intro, 'eyebrow')} title={str(intro, 'title')} body={str(intro, 'body')} />
-            <FeatureGrid items={items(intro, 'pillars')} columns={4} numbered className="mt-12" />
+            <FeatureGrid items={items(intro, 'pillars')} columns={5} numbered className="mt-12" />
           </div>
         </section>
       )}
@@ -118,7 +124,17 @@ export function ServicesPage() {
         </section>
       )}
 
-      <FaqSection faqs={faqsFor('Services')} intro={s.faq_intro} />
+      <FaqSection
+        faqs={faqsFor('Services')}
+        columns={2}
+        intro={
+          s.faq_intro || {
+            eyebrow: 'Service FAQ',
+            title: 'Questions AI teams ask before they start',
+            body: 'Turnaround, custom vs off-the-shelf data, formats, pricing, NDAs and how we combine collection, annotation and evaluation.',
+          }
+        }
+      />
       <CtaBand data={s.closing_cta} secondaryTo="/collaborate-with-us" />
     </>
   );

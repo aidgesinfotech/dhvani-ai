@@ -7,7 +7,7 @@ export function AdminFaqs() {
   return (
     <CrudPage
       title="FAQs"
-      subtitle="General → Home & About · Services → Services page · Collaborate → Collaborate page · Contact → Contact page. Service-specific FAQs live inside each service."
+      subtitle="General FAQs appear on the homepage and About page. Services, Collaborate and Contact each use their own category. Egocentric questions are edited inside that service."
       endpoint="faqs"
       defaults={{ question: '', answer: '', category: 'General', published: 1 }}
       filter={{ key: 'category', options: CATEGORIES }}

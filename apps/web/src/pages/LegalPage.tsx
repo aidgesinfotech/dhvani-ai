@@ -18,7 +18,7 @@ function blockId(heading: string | undefined, i: number) {
     .replace(/(^-|-$)/g, '');
 }
 
-export function LegalPage({ slug }: { slug: 'privacy-policy' | 'terms-of-service' }) {
+export function LegalPage({ slug }: { slug: string }) {
   const [page, setPage] = useState<PageData | null>(null);
   const [failed, setFailed] = useState(false);
   const [active, setActive] = useState(0);
@@ -35,8 +35,10 @@ export function LegalPage({ slug }: { slug: 'privacy-policy' | 'terms-of-service
   const content = sectionMap(page).content || {};
   const blocks = useMemo(() => (Array.isArray(content.blocks) ? (content.blocks as LegalBlock[]) : []), [content.blocks]);
   const lastUpdated = typeof content.last_updated === 'string' ? content.last_updated : '';
-  const isPrivacy = slug === 'privacy-policy';
-  const other = isPrivacy ? { to: '/terms-of-service', label: 'Terms of Service' } : { to: '/privacy-policy', label: 'Privacy Policy' };
+  const other =
+    slug === 'privacy-policy'
+      ? { to: '/terms-of-service', label: 'Website Terms of Use' }
+      : { to: '/privacy-policy', label: 'Privacy and Cookie Policy' };
 
   const toc = useMemo(
     () => blocks.map((b, i) => ({ heading: b.heading, id: blockId(b.heading, i) })).filter((t) => t.heading),
@@ -62,7 +64,7 @@ export function LegalPage({ slug }: { slug: 'privacy-policy' | 'terms-of-service
   }, [toc]);
 
   if (!page && !failed) return <PageLoader />;
-  const title = page?.hero_title || (isPrivacy ? 'Privacy Policy' : 'Terms of Service');
+  const title = page?.hero_title || page?.title || 'Legal';
 
   return (
     <>

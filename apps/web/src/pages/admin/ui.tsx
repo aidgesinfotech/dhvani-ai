@@ -3,18 +3,25 @@ import { ArrowDown, ArrowUp, ChevronDown, Code, Plus, Trash2, X } from 'lucide-r
 import { ICON_NAMES } from '../../components/ui/Icon';
 
 export const field =
-  'w-full rounded-xl border border-white/10 bg-black/50 px-3 py-2.5 text-sm text-white outline-none transition-colors placeholder:text-white/25 focus:border-gold/70 focus:bg-gold/[0.03]';
+  'w-full min-h-11 rounded-xl border border-white/10 bg-black/40 px-3.5 py-2.5 text-base text-white outline-none transition-colors placeholder:text-white/25 focus:border-gold/70 focus:bg-gold/[0.04] md:text-sm';
 export const labelCls = 'block text-[11px] font-medium uppercase tracking-wider text-white/45';
 
 export function AdminHeader({ title, subtitle, children }: { title: string; subtitle?: ReactNode; children?: ReactNode }) {
   return (
-    <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <h1 className="font-display text-2xl md:text-3xl font-semibold text-white">{title}</h1>
-        {subtitle && <p className="mt-1.5 text-sm text-white/45">{subtitle}</p>}
+    <div className="mb-6 flex flex-col gap-4 sm:mb-7 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
+      <div className="min-w-0">
+        <h1 className="font-display text-[1.65rem] leading-tight font-semibold text-white sm:text-3xl">{title}</h1>
+        {subtitle && <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-white/45">{subtitle}</p>}
       </div>
-      {children && <div className="flex flex-wrap gap-2">{children}</div>}
+      {children && <div className="flex w-full flex-wrap gap-2 sm:w-auto [&>button]:min-h-11 [&>button]:flex-1 sm:[&>button]:flex-none">{children}</div>}
     </div>
+  );
+}
+
+/** Stays above the mobile tab bar and pins to the corner on desktop. */
+export function SaveDock({ children }: { children: ReactNode }) {
+  return (
+    <div className="fixed inset-x-3 z-30 bottom-[calc(4.6rem+env(safe-area-inset-bottom))] lg:inset-x-auto lg:right-8 lg:bottom-8">{children}</div>
   );
 }
 
@@ -44,7 +51,7 @@ export function Btn({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all disabled:opacity-50 ${styles} ${className}`}
+      className={`inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all disabled:opacity-50 ${styles} ${className}`}
     >
       {children}
     </button>
@@ -85,15 +92,19 @@ export function Modal({ title, onClose, children, wide }: { title: string; onClo
     };
   }, [onClose]);
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/80 p-3 py-8 backdrop-blur-sm" data-lenis-prevent>
-      <div className={`w-full ${wide ? 'max-w-4xl' : 'max-w-lg'} rounded-2xl border border-white/10 bg-[#0a0a0d] shadow-2xl`}>
-        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-          <h2 className="font-display text-lg font-semibold text-white">{title}</h2>
-          <button type="button" onClick={onClose} className="text-white/50 hover:text-white" aria-label="Close">
+    <div className="fixed inset-0 z-[80] flex items-end justify-center sm:items-start sm:overflow-y-auto sm:p-4 sm:py-10" data-lenis-prevent>
+      <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className={`relative z-10 flex max-h-[92dvh] w-full flex-col overflow-hidden rounded-t-[1.6rem] border border-white/10 bg-[#0c0c11] shadow-2xl sm:max-h-[min(92dvh,52rem)] sm:rounded-2xl ${wide ? 'sm:max-w-4xl' : 'sm:max-w-lg'}`}
+      >
+        <div className="mx-auto mt-2.5 h-1 w-10 shrink-0 rounded-full bg-white/20 sm:hidden" aria-hidden />
+        <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3.5 sm:px-5 sm:py-4">
+          <h2 className="min-w-0 truncate font-display text-lg font-semibold text-white">{title}</h2>
+          <button type="button" onClick={onClose} className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white/60 hover:bg-white/5 hover:text-white" aria-label="Close">
             <X size={18} />
           </button>
         </div>
-        <div className="p-5">{children}</div>
+        <div className="overflow-y-auto p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:p-5">{children}</div>
       </div>
     </div>
   );
@@ -113,10 +124,10 @@ export function Toggle({ checked, onChange, label }: { checked: boolean; onChang
   return (
     <label className="inline-flex cursor-pointer items-center gap-2.5 text-sm text-white/80">
       <span
-        className={`relative h-5 w-9 rounded-full transition-colors ${checked ? 'bg-gold' : 'bg-white/15'}`}
+        className={`relative h-6 w-11 rounded-full transition-colors ${checked ? 'bg-gold' : 'bg-white/15'}`}
         onClick={() => onChange(!checked)}
       >
-        <span className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-all ${checked ? 'left-[18px]' : 'left-0.5'}`} />
+        <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${checked ? 'left-[22px]' : 'left-0.5'}`} />
       </span>
       <input type="checkbox" className="sr-only" checked={checked} onChange={(e) => onChange(e.target.checked)} />
       {label}

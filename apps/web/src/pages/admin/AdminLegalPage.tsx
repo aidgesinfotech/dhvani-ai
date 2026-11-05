@@ -11,7 +11,7 @@ function readContent(page: PageData): Content {
   return { last_updated: c.last_updated || '', blocks: Array.isArray(c.blocks) ? c.blocks : [] };
 }
 
-export function AdminLegalPage({ slug, label }: { slug: 'privacy-policy' | 'terms-of-service'; label: string }) {
+export function AdminLegalPage({ slug, label }: { slug: string; label: string }) {
   const [page, setPage] = useState<PageData | null>(null);
   const [content, setContent] = useState<Content>({ last_updated: '', blocks: [] });
   const [msg, setMsg] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null);

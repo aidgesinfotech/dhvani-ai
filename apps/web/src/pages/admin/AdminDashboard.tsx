@@ -41,11 +41,19 @@ export function AdminDashboard() {
     <div>
       <AdminHeader title="Dashboard" subtitle="Everything you edit here goes live on the website immediately." />
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <Link to="/admin/homepage" className="card card-gold card-hover mb-5 flex items-center justify-between gap-4 p-5">
+        <div>
+          <p className="font-display text-lg font-semibold text-white">Edit the homepage</p>
+          <p className="mt-1 text-sm text-white/55">Hero, contributors, countries, tasks, map and every section visitors see first.</p>
+        </div>
+        <ArrowUpRight className="text-gold" size={18} />
+      </Link>
+
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
         {leadCards.map((k) => (
-          <Link key={k.label} to={k.to} className={`card card-hover p-5 ${k.highlight ? 'card-gold' : ''}`}>
+          <Link key={k.label} to={k.to} className={`card card-hover p-4 sm:p-5 ${k.highlight ? 'card-gold' : ''}`}>
             <k.icon size={18} className={k.highlight ? 'text-gold' : 'text-royal-light'} />
-            <p className="mt-4 font-display text-3xl font-bold text-white">{k.value}</p>
+            <p className="mt-3 font-display text-2xl font-bold text-white sm:mt-4 sm:text-3xl">{k.value}</p>
             <p className="mt-1 text-xs text-white/50">{k.label}</p>
           </Link>
         ))}

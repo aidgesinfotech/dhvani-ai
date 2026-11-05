@@ -1,15 +1,17 @@
 import { NavLink } from 'react-router-dom';
 import { Handshake, House, Layers, Newspaper, Phone } from 'lucide-react';
+import { useSite } from '../context/SiteContext';
 
 const items = [
-  { to: '/', label: 'Home', icon: House, end: true },
-  { to: '/services', label: 'Services', icon: Layers, end: false },
-  { to: '/blog', label: 'Blog', icon: Newspaper, end: false },
-  { to: '/collaborate-with-us', label: 'Join', icon: Handshake, end: false },
-  { to: '/contact-us', label: 'Contact', icon: Phone, end: false },
+  { to: '/', label: 'Home', key: 'nav_home', icon: House, end: true },
+  { to: '/services', label: 'Services', key: 'nav_services', icon: Layers, end: false },
+  { to: '/blog', label: 'Blog', key: 'nav_blog', icon: Newspaper, end: false },
+  { to: '/collaborate-with-us', label: 'Join', key: 'nav_join', icon: Handshake, end: false },
+  { to: '/contact-us', label: 'Contact', key: 'nav_contact', icon: Phone, end: false },
 ] as const;
 
 export function MobileBottomNav() {
+  const { settings } = useSite();
   return (
     <nav
       className="lg:hidden fixed bottom-0 inset-x-0 z-[60] pointer-events-none px-4 pb-[max(0.6rem,env(safe-area-inset-bottom))]"
@@ -17,7 +19,7 @@ export function MobileBottomNav() {
     >
       <div className="pointer-events-auto mx-auto w-full max-w-[23rem]">
         <div className="header-glass relative flex items-center justify-between rounded-full p-1 shadow-[0_10px_30px_rgba(0,0,0,0.6)]">
-          {items.map(({ to, label, icon: Ico, end }) => (
+          {items.map(({ to, label, key, icon: Ico, end }) => (
             <NavLink
               key={to}
               to={to}
@@ -32,7 +34,7 @@ export function MobileBottomNav() {
                 <>
                   {isActive && <span className="absolute inset-0 rounded-full bg-gold shadow-[0_0_20px_rgba(209,169,8,0.55)]" aria-hidden />}
                   <Ico size={16} strokeWidth={isActive ? 2.3 : 1.8} className="relative z-10" />
-                  <span className="relative z-10 font-mono text-[8.5px] uppercase tracking-[0.06em] leading-none">{label}</span>
+                  <span className="relative z-10 font-mono text-[8.5px] uppercase tracking-[0.06em] leading-none">{settings[key] || label}</span>
                 </>
               )}
             </NavLink>

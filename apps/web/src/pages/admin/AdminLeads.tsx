@@ -106,13 +106,13 @@ export function AdminLeads() {
       <Notice msg={msg} onClose={() => setMsg(null)} />
 
       <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-wrap gap-1.5">
+        <div className="-mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden">
           {TYPES.map((t) => (
             <button
               key={t.key}
               type="button"
               onClick={() => setParams(t.key ? { type: t.key } : {})}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium ${type === t.key ? 'bg-gold text-black' : 'border border-white/10 text-white/60 hover:text-white'}`}
+              className={`shrink-0 rounded-full px-3.5 py-2 text-xs font-medium ${type === t.key ? 'bg-gold text-black' : 'border border-white/10 text-white/60 hover:text-white'}`}
             >
               {t.label}
             </button>
@@ -136,7 +136,7 @@ export function AdminLeads() {
                   {l.email} {l.subject ? `· ${l.subject}` : ''}
                 </p>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex w-full flex-wrap items-center gap-1.5 sm:w-auto">
                 {l.files.length > 0 && (
                   <span className="inline-flex items-center gap-1 text-xs text-white/50">
                     <Paperclip size={12} /> {l.files.length}
@@ -144,7 +144,7 @@ export function AdminLeads() {
                 )}
                 <Badge tone={TONE[l.type]}>{l.type}</Badge>
                 {l.status === 'new' && <Badge>new</Badge>}
-                <span className="text-xs text-white/35">{new Date(l.created_at).toLocaleString()}</span>
+                <span className="text-xs text-white/35">{new Date(l.created_at).toLocaleDateString()}</span>
               </div>
             </button>
             {open === l.id && (

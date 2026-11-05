@@ -17,10 +17,35 @@ const GROUPS: { title: string; fields: Def[] }[] = [
     ],
   },
   {
+    title: 'Navigation labels',
+    fields: [
+      { key: 'nav_home', label: 'Home' },
+      { key: 'nav_about', label: 'About Us' },
+      { key: 'nav_egocentric', label: 'Egocentric' },
+      { key: 'nav_services', label: 'Services' },
+      { key: 'nav_blog', label: 'Blog' },
+      { key: 'nav_collaborate', label: 'Collaborate' },
+      { key: 'nav_contact', label: 'Contact' },
+      { key: 'nav_join', label: 'Mobile “Join” label', hint: 'Short label on the phone bottom bar' },
+    ],
+  },
+  {
+    title: 'Newsletter & chat',
+    fields: [
+      { key: 'newsletter_eyebrow', label: 'Newsletter eyebrow' },
+      { key: 'newsletter_title', label: 'Newsletter title' },
+      { key: 'newsletter_body', label: 'Newsletter text', long: true },
+      { key: 'eva_kicker', label: 'Chat button eyebrow' },
+      { key: 'eva_name', label: 'Chat button name' },
+      { key: 'eva_message', label: 'WhatsApp opener', long: true, hint: 'Prefilled message when someone taps Eva' },
+    ],
+  },
+  {
     title: 'Contact details',
     fields: [
-      { key: 'phone', label: 'Phone' },
-      { key: 'whatsapp', label: 'WhatsApp number', hint: 'International format, digits only, e.g. 919904199042' },
+      { key: 'phone', label: 'Phone (optional)', hint: 'Leave empty to hide — sheet uses WhatsApp numbers instead of the old +91 99041 99042 line' },
+      { key: 'whatsapp', label: 'India WhatsApp', hint: 'Digits only, e.g. 917046070460' },
+      { key: 'whatsapp_uk', label: 'UK WhatsApp', hint: 'Digits only, e.g. 447311304787' },
       { key: 'email', label: 'Email' },
       { key: 'business_hours', label: 'Business hours' },
       { key: 'city', label: 'City / region' },
